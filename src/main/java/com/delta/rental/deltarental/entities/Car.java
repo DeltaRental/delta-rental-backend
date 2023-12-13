@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+
 @Entity
 @Table(name = "cars")
 @Data
@@ -20,7 +21,7 @@ public class Car {
     private int id;
 
     @Column(name = "kilometer")
-    private int kilometer;
+    private double kilometer;
 
     @Column(name = "year")
     private int year;
