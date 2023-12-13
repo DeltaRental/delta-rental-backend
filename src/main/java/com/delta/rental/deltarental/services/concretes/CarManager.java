@@ -1,6 +1,8 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.entities.Car;
+import com.delta.rental.deltarental.entities.Color;
+import com.delta.rental.deltarental.entities.Model;
 import com.delta.rental.deltarental.repositories.CarRepository;
 import com.delta.rental.deltarental.services.abstracts.CarService;
 import com.delta.rental.deltarental.services.dtos.requests.car.AddCarRequest;
@@ -28,6 +30,8 @@ public class CarManager implements CarService {
         car.setYear(addCarRequest.getYear());
         car.setDailyPrice(addCarRequest.getDailyPrice());
         car.setPlate(addCarRequest.getPlate());
+        car.setModel(new Model(addCarRequest.getModelId()));
+        car.setColor(new Color(addCarRequest.getColorId()));
 
         carRepository.save(car);
     }

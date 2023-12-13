@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCarRequest {
-    private int year;
+    private double kilometer;
 
-    private int kilometer;
+    private int year;
 
     private double dailyPrice;
 

@@ -14,6 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Model {
+    public Model(int modelId) {
+        this.id = modelId;
+    }
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,5 +33,6 @@ public class Model {
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
+
 
 }
