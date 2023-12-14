@@ -21,11 +21,13 @@ public class AddCarRequest {
     @Positive(message = "Günlük kiralama ücreti 0'dan küçük olamaz")
     private double dailyPrice;
 
-    @Pattern(regexp = "(?i)^[0-9]{2}[A-Z]{1,3}[0-9]{1,4}$", message = "Geçerli bir plaka giriniz.")
+    @Pattern(regexp = "(?i)^[0-9]{2}[A-Z]{1,3}[0-9]{1,4}$", message = "Boşluksuz ve geçerli bir plaka giriniz.")
     private String plate;
 
+    @Positive(message = "Model id 0' dan küçük bir değer olamaz.")
     private int modelId;
 
+    @Positive(message = "Color id 0' dan küçük bir değer olamaz.")
     private int colorId;
 
 

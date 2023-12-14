@@ -11,6 +11,6 @@ public interface CarService {
     GetCarResponse getById(int id);
     List<GetCarListResponse> getAll();
     void add (AddCarRequest addCarRequest);
-    void update(UpdateCarRequest updateCarRequest, int id);
+    void update(UpdateCarRequest updateCarRequest);
     void delete(int id);
 }
