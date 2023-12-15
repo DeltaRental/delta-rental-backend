@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "models")
@@ -33,6 +34,5 @@ public class Model {
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
-
 
 }
