@@ -10,8 +10,11 @@ import com.delta.rental.deltarental.services.dtos.requests.car.AddCarRequest;
 import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
+import com.delta.rental.deltarental.services.dtos.responses.color.GetColorResponse;
+import com.delta.rental.deltarental.services.dtos.responses.model.GetModelResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,46 +47,70 @@ public class CarManager implements CarService {
 
     @Override
     public void add(AddCarRequest addCarRequest) {
-        if(carRepository.existsByPlate(addCarRequest.getPlate().trim().toUpperCase()))
-        {
-            throw new RuntimeException("Aynı plakada başka bir araç eklenemez.");
-        }
-
 
         //Ekleme yaparken model id' nin db' de var olup olamama durumu kontrolü.
-        if (modelService.getById(addCarRequest.getModelId()) == null){
+        GetModelResponse getModelResponse = modelService.getById(addCarRequest.getModelId());
+        if (getModelResponse == null){
             //throw new RuntimeException(addCarRequest.getModelId()+" nolu id' ye sahip model bulunmamaktadır.");
         }
 
         //Ekleme yaparken color id' nin db' de var olup olamama durumu kontrolü.
-        if (colorService.getById(addCarRequest.getColorId()) == null){
+        GetColorResponse getColorResponse =colorService.getById(addCarRequest.getColorId());
+        if (getColorResponse == null){
             //throw new RuntimeException(addCarRequest.getColorId()+" nolu id' ye sahip renk bulunmamaktadır.");
         }
 
+
+        if(carRepository.existsByPlate(addCarRequest.getPlate().trim().toUpperCase().replaceAll("\\s", "")))
+        {
+            throw new RuntimeException("Aynı plakada başka bir araç eklenemez.");
+        }
+
+        //Model Mapper işlemi
         Car car = this.modelMapperService.forRequest()
                 .map(addCarRequest, Car.class);
+
+        car.setPlate(car.getPlate().trim().toUpperCase().replaceAll("\\s", ""));
+
         carRepository.save(car);
     }
 
     @Override
     public void update(UpdateCarRequest updateCarRequest) {
 
-        //Güncelleme yaparken model id' nin db' de var olup olamama durumu kontrolü.
-        if (!(carRepository.existsByModelId(updateCarRequest.getModelId()))){
-            throw new RuntimeException(updateCarRequest.getModelId()+" nolu id' ye sahip model bulunmamaktadır.");
-        }
-
-        //Güncelleme yaparken color id' nin db' de var olup olamama durumu kontrolü.
-        if (!(carRepository.existsByColorId(updateCarRequest.getColorId()))){
-            throw new RuntimeException(updateCarRequest.getColorId()+" nolu id' ye sahip renk bulunmamaktadır.");
-        }
-
-        if(carRepository.findById(updateCarRequest.getId()) != null){
+        if(!(carRepository.existsById(updateCarRequest.getId()))){
             throw new RuntimeException(updateCarRequest.getId()+" nolu id'ye sahip araç bulunmamaktadır.");
         }
 
+        //Güncelleme yaparken model id' nin db' de var olup olamama durumu kontrolü.
+        GetModelResponse getModelResponse = modelService.getById(updateCarRequest.getModelId());
+        if (getModelResponse == null){
+            //throw new RuntimeException(addCarRequest.getModelId()+" nolu id' ye sahip model bulunmamaktadır.");
+        }
+
+        //Güncelleme yaparken color id' nin db' de var olup olamama durumu kontrolü.
+        GetColorResponse getColorResponse =colorService.getById(updateCarRequest.getColorId());
+        if (getColorResponse == null){
+            //throw new RuntimeException(addCarRequest.getColorId()+" nolu id' ye sahip renk bulunmamaktadır.");
+        }
+
+
+        //Kullanıcının güncellemek istediği aracın plakasını , DB 'de aynı plakaya sahip başka bir araç var mı durumunun kontrolünü sağlayan kod
+        Optional<Car> existingCarOptional = carRepository.findById(updateCarRequest.getId());
+        Car existingCar = existingCarOptional.get();
+        String newPlate = updateCarRequest.getPlate().trim().toUpperCase().replaceAll("\s", "");
+
+        //Eğer DB de girilen palakaya sahip başka bir plaka var ise bu hata oluşur.Ancak yok ise güncellenir(kendi plakasıda dahil).
+
+        if (!existingCar.getPlate().equals(newPlate) && carRepository.existsByPlate(newPlate)) {
+            throw new RuntimeException("Bu plakaya sahip zaten bir araç var !!");
+        }
+
+
+        //Model Mapper işlemi
         Car car = this.modelMapperService.forRequest()
                 .map(updateCarRequest, Car.class);
+
         carRepository.save(car);
     }
 

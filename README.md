@@ -31,6 +31,9 @@ Ekip üyeleri, yazılım geliştirme konusundaki uzmanlıklarıyla bir araya gel
 ## Kullanılan Teknolojiler
 [![Teknolojiler](https://skillicons.dev/icons?i=postman,git,java,spring,postgresql)](https://skillicons.dev)
 
+## DataBase ER Diagramı
+![DIAGRAM](img/projeERD_1.png)
+
 ## Kurulum
 
 Projeyi yerel bilgisayarınıza klonlamak ve çalıştırmak için aşağıdaki adımları izleyebilirsiniz:
@@ -38,13 +41,13 @@ Projeyi yerel bilgisayarınıza klonlamak ve çalıştırmak için aşağıdaki 
 1. Repoyu bilgisayarınıza klonlayın:
 
     ```bash
-    git clone https://github.com/kullaniciadi/proje.git
+    git clone https://github.com/mervekeser/delta-rental.git
     ```
 
 2. Proje dizinine gidin:
 
     ```bash
-    cd proje
+    cd delta-rental
     ```
 
 Uygulama başarıyla başladıktan sonra http://localhost:8080 adresinden projeyi görüntüleyebilirsiniz.
@@ -52,5 +55,4 @@ Uygulama başarıyla başladıktan sonra http://localhost:8080 adresinden projey
 ## Katkıda Bulunma
 
 Eğer projemize katkıda bulunmak istiyorsanız, lütfen bir çekme talebi oluşturun. Katkılarınızı bekliyoruz!
-
 

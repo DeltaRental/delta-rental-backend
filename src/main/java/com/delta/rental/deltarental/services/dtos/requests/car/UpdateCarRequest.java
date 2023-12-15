@@ -25,7 +25,8 @@ public class UpdateCarRequest {
     @Positive(message = "Günlük kiralama ücreti 0'dan küçük olamaz")
     private double dailyPrice;
 
-    @Pattern(regexp = "(?i)^[0-9]{2}[A-Z]{1,3}[0-9]{1,4}$", message = "Boşluksuz ve geçerli bir plaka giriniz.")
+    //@Pattern(regexp = "(?i)^[0-9]{2}[A-Z]{1,3}[0-9]{1,4}$", message = "Boşluksuz ve geçerli bir plaka giriniz.")
+    @Pattern(regexp = "(?i)^\\s*[0-9]{2}\\s*[A-Z]{1,3}\\s*[0-9]{1,4}\\s*$", message = "geçerli bir plaka giriniz.")
     private String plate;
 
     @Positive(message = "Model id 0' dan küçük bir değer olamaz.")
