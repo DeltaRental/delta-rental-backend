@@ -28,6 +28,9 @@ Bu projeyi geliştiren ekip:
 
 Ekip üyeleri, yazılım geliştirme konusundaki uzmanlıklarıyla bir araya gelerek başarılı bir iş ortaya koymuştur.
 
+## Kullanılan Teknolojiler
+[![Teknolojiler](https://skillicons.dev/icons?i=postman,git,java,spring,postgresql)](https://skillicons.dev)
+
 ## Kurulum
 
 Projeyi yerel bilgisayarınıza klonlamak ve çalıştırmak için aşağıdaki adımları izleyebilirsiniz:
