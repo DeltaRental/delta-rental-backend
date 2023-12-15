@@ -15,9 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Model {
-    public Model(int modelId) {
-        this.id = modelId;
-    }
+
 
     @Id
     @Column(name = "id")
