@@ -2,6 +2,7 @@ package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.Car;
+import com.delta.rental.deltarental.entities.Rental;
 import com.delta.rental.deltarental.repositories.CarRepository;
 import com.delta.rental.deltarental.services.abstracts.CarService;
 import com.delta.rental.deltarental.services.abstracts.ColorService;
@@ -29,7 +30,9 @@ public class CarManager implements CarService {
 
     @Override
     public GetCarResponse getById(int id) {
-        Car car = carRepository.findById(id).orElseThrow();
+        Car car = carRepository.findById(id).orElseThrow(() -> {
+            throw new RuntimeException(id + " nolu id' ye sahip bir car id bulunmamaktadır.");
+        });
         GetCarResponse carResponse = modelMapperService.forResponse().map(car, GetCarResponse.class);
         return carResponse;
     }
@@ -49,18 +52,13 @@ public class CarManager implements CarService {
     public void add(AddCarRequest addCarRequest) {
 
         //Ekleme yaparken model id' nin db' de var olup olamama durumu kontrolü.
-        GetModelResponse getModelResponse = modelService.getById(addCarRequest.getModelId());
-        if (getModelResponse == null){
-            //throw new RuntimeException(addCarRequest.getModelId()+" nolu id' ye sahip model bulunmamaktadır.");
-        }
+        modelService.getById(addCarRequest.getModelId());
+
 
         //Ekleme yaparken color id' nin db' de var olup olamama durumu kontrolü.
-        GetColorResponse getColorResponse =colorService.getById(addCarRequest.getColorId());
-        if (getColorResponse == null){
-            //throw new RuntimeException(addCarRequest.getColorId()+" nolu id' ye sahip renk bulunmamaktadır.");
-        }
+        colorService.getById(addCarRequest.getColorId());
 
-
+        //Plaka eklerken DB içerisinde aynı plakaya sahip araçların var olup olmama kontrolü
         if(carRepository.existsByPlate(addCarRequest.getPlate().trim().toUpperCase().replaceAll("\\s", "")))
         {
             throw new RuntimeException("Aynı plakada başka bir araç eklenemez.");
@@ -83,16 +81,12 @@ public class CarManager implements CarService {
         }
 
         //Güncelleme yaparken model id' nin db' de var olup olamama durumu kontrolü.
-        GetModelResponse getModelResponse = modelService.getById(updateCarRequest.getModelId());
-        if (getModelResponse == null){
-            //throw new RuntimeException(addCarRequest.getModelId()+" nolu id' ye sahip model bulunmamaktadır.");
-        }
+        modelService.getById(updateCarRequest.getModelId());
+
 
         //Güncelleme yaparken color id' nin db' de var olup olamama durumu kontrolü.
-        GetColorResponse getColorResponse =colorService.getById(updateCarRequest.getColorId());
-        if (getColorResponse == null){
-            //throw new RuntimeException(addCarRequest.getColorId()+" nolu id' ye sahip renk bulunmamaktadır.");
-        }
+        colorService.getById(updateCarRequest.getColorId());
+
 
 
         //Kullanıcının güncellemek istediği aracın plakasını , DB 'de aynı plakaya sahip başka bir araç var mı durumunun kontrolünü sağlayan kod
@@ -100,7 +94,7 @@ public class CarManager implements CarService {
         Car existingCar = existingCarOptional.get();
         String newPlate = updateCarRequest.getPlate().trim().toUpperCase().replaceAll("\s", "");
 
-        //Eğer DB de girilen palakaya sahip başka bir plaka var ise bu hata oluşur.Ancak yok ise güncellenir(kendi plakasıda dahil).
+        //Eğer DB de girilen plakaya sahip başka bir plaka var ise bu hata oluşur.Ancak yok ise güncellenir(kendi plakasıda dahil).
 
         if (!existingCar.getPlate().equals(newPlate) && carRepository.existsByPlate(newPlate)) {
             throw new RuntimeException("Bu plakaya sahip zaten bir araç var !!");
@@ -110,6 +104,7 @@ public class CarManager implements CarService {
         //Model Mapper işlemi
         Car car = this.modelMapperService.forRequest()
                 .map(updateCarRequest, Car.class);
+
 
         carRepository.save(car);
     }

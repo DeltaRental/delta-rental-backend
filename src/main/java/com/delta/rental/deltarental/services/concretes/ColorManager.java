@@ -64,12 +64,12 @@ public class ColorManager implements ColorService {
             throw new RuntimeException(updateColorRequest.getId()+" nolu id'ye sahip renk bulunmamaktadır.");
         }
 
-        //Kullanıcının güncellemek istediği rengin adını , DB 'de aynı plakaya sahip başka bir araç var mı durumunun kontrolünü sağlayan kod
+        //Kullanıcının güncellemek istediği rengin adını , DB 'de aynı renge sahip başka bir renk var mı durumunun kontrolünü sağlayan kod
         Optional<Color> existingColorOptional = colorRepository.findById(updateColorRequest.getId());
         Color existingColor = existingColorOptional.get();
         String newName = updateColorRequest.getName().trim().toUpperCase().replaceAll("\s", "");
 
-        //Eğer DB de girilen palakaya sahip başka bir color ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi renge dahil).
+        //Eğer DB de girilen renk ismine sahip başka bir renk ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi rengi dahil).
 
         if (!existingColor.getName().equals(newName) && colorRepository.existsByName(newName)) {
             throw new RuntimeException("bu renge sahip zaten bir renk var!!");

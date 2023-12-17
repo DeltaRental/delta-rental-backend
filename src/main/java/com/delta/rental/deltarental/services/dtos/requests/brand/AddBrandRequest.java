@@ -14,4 +14,5 @@ public class AddBrandRequest {
     @NotBlank(message = "Marka adı boş olamaz!")
     @Length(min = 2,message = "Girilen marka en az 2 harfli olmalıdır.")
     private String name;
+
 }

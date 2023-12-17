@@ -56,3 +56,8 @@ Uygulama başarıyla başladıktan sonra http://localhost:8080 adresinden projey
 
 Eğer projemize katkıda bulunmak istiyorsanız, lütfen bir çekme talebi oluşturun. Katkılarınızı bekliyoruz!
 
+
+## Proje Versiyonları
+
+- <a href = "https://github.com/mervekeser/delta-rental/commits/main/">**Pair 6 Proje Çalışması 2 Commits (13.12.2023) Version-1.0.0 ve Aşağısı** </a>
+- <a href = "https://github.com/mervekeser/delta-rental/commits/main/">**Pair 6 Proje Çalışması 3 Commits (15.12.2023) Version-1.0.1 ve Aşağısı** </a>

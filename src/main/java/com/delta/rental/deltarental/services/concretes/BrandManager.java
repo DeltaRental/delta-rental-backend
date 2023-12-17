@@ -28,7 +28,10 @@ public class BrandManager implements BrandService {
 
     @Override
     public GetBrandResponse getById(int id) {
-        Brand brand = brandRepository.findById(id).orElseThrow();
+
+        Brand brand = brandRepository.findById(id).orElseThrow(() -> {
+            throw new RuntimeException(id + " nolu id' ye sahip Marka bulunmamaktadır.");
+        });
         GetBrandResponse brandResponse = modelMapperService.forResponse().map(brand, GetBrandResponse.class);
         return brandResponse;
     }
