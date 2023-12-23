@@ -9,6 +9,7 @@ import com.delta.rental.deltarental.services.dtos.requests.model.AddModelRequest
 import com.delta.rental.deltarental.services.dtos.requests.model.UpdateModelRequest;
 import com.delta.rental.deltarental.services.dtos.responses.model.GetModelListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.model.GetModelResponse;
+import com.delta.rental.deltarental.services.rules.ModelBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +20,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Service
 public class ModelManager implements ModelService {
-
     private final ModelRepository modelRepository;
-    private final BrandService brandService;
     private ModelMapperService modelMapperService;
-
+    private final ModelBusinessRules modelBusinessRules;
 
     @Override
     public GetModelResponse getById(int id) {
-        Model model = modelRepository.findById(id).orElseThrow(() -> {
-            throw new RuntimeException(id + " nolu id' ye sahip model bulunmamaktadır.");
-        });
-
+        Model model = modelBusinessRules.checkByModelId(id);
         GetModelResponse modelResponse = modelMapperService.forResponse().map(model, GetModelResponse.class);
         return modelResponse;
     }
@@ -47,14 +43,8 @@ public class ModelManager implements ModelService {
 
     @Override
     public void add(AddModelRequest addModelRequest) {
-        if(modelRepository.existsByName(addModelRequest.getName().trim().toUpperCase().replaceAll("\\s", ""))){
-            throw new RuntimeException("Bu model adı zaten var!!");
-        }
-
-        //Ekleme yaparken brand id' nin db' de var olup olamama durumu kontrolü.
-        //id kontrolü BrandService'de sağlanıyor.
-        brandService.getById(addModelRequest.getBrandId());
-
+        modelBusinessRules.checkByModelName(addModelRequest.getName());
+        modelBusinessRules.checkByBrandId(addModelRequest.getBrandId());
 
         Model model = this.modelMapperService.forRequest()
                 .map(addModelRequest, Model.class);
@@ -67,29 +57,13 @@ public class ModelManager implements ModelService {
 
     @Override
     public void update(UpdateModelRequest updateModelRequest) {
-
-        if(!(modelRepository.existsById(updateModelRequest.getId()))){
-            throw new RuntimeException(updateModelRequest.getId()+" nolu id'ye sahip bir model bulunmamaktadır.");
-        }
-
-        //Güncelleme yaparken brand id' nin db' de var olup olamama durumu kontrolü.
-        brandService.getById(updateModelRequest.getBrandId());
-
-        //Kullanıcının güncellemek istediği model adını , DB 'de aynı model ismine sahip başka bir model var mı durumunun kontrolünü sağlayan kod
-        Optional<Model> existingModelOptional = modelRepository.findById(updateModelRequest.getId());
-        Model existingModel = existingModelOptional.get();
-        String newName = updateModelRequest.getName().trim().toUpperCase().replaceAll("\s", "");
-
-        //Eğer DB de girilen model ismine sahip başka bir model ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi model ismi dahil).
-
-        if (!existingModel.getName().equals(newName) && modelRepository.existsByName(newName)) {
-            throw new RuntimeException("bu model ismi zaten var !!");
-        }
+        modelBusinessRules.checkByModelId(updateModelRequest.getId());
+        modelBusinessRules.checkByBrandId(updateModelRequest.getBrandId());
+        modelBusinessRules.checkByModelNameWhenUpdate(updateModelRequest.getId(),updateModelRequest.getName());
 
         //Model Mapper işlemi
         Model model = this.modelMapperService.forRequest()
                 .map(updateModelRequest, Model.class);
-
 
         model.setName(model.getName().trim().toUpperCase().replaceAll("\\s", ""));
 
@@ -98,6 +72,7 @@ public class ModelManager implements ModelService {
     }
     @Override
     public void delete(int id) {
+        modelBusinessRules.checkByModelId(id);
         modelRepository.deleteById(id);
     }
 

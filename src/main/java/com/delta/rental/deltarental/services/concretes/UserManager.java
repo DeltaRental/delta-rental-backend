@@ -5,6 +5,7 @@ import com.delta.rental.deltarental.entities.User;
 import com.delta.rental.deltarental.repositories.UserRepository;
 import com.delta.rental.deltarental.services.abstracts.UserService;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserResponse;
+import com.delta.rental.deltarental.services.rules.UserBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +14,11 @@ import org.springframework.stereotype.Service;
 public class UserManager implements UserService {
     private final UserRepository userRepository;
     private final ModelMapperService modelMapperService;
+    private final UserBusinessRules userBusinessRules;
 
     @Override
     public GetUserResponse getById(int id) {
-        User user = userRepository.findById(id).orElseThrow(() -> {
-            throw new RuntimeException(id + " nolu id' ye sahip bir user id bulunmamaktadır.");
-        });
+        User user = userBusinessRules.checkByUserId(id);
         GetUserResponse userResponse = modelMapperService.forResponse().map(user, GetUserResponse.class);
         return userResponse;
     }

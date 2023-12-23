@@ -9,6 +9,7 @@ import com.delta.rental.deltarental.services.dtos.requests.color.AddColorRequest
 import com.delta.rental.deltarental.services.dtos.requests.color.UpdateColorRequest;
 import com.delta.rental.deltarental.services.dtos.responses.color.GetColorListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.color.GetColorResponse;
+import com.delta.rental.deltarental.services.rules.ColorBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,15 +20,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Service
 public class ColorManager implements ColorService {
-    ColorRepository colorRepository;
-    ModelMapperService modelMapperService;
+    private final ColorRepository colorRepository;
+    private ModelMapperService modelMapperService;
+    private ColorBusinessRules colorBusinessRules;
 
     @Override
     public GetColorResponse getById(int id) {
-        Color color = colorRepository.findById(id).orElseThrow(() -> {
-            throw new RuntimeException(id + " nolu id' ye sahip renk bulunmamaktadır.");
-        });
-
+        Color color = colorBusinessRules.checkByColorId(id);
         GetColorResponse colorResponse = modelMapperService.forResponse().map(color, GetColorResponse.class);
         return colorResponse;
     }
@@ -44,9 +43,7 @@ public class ColorManager implements ColorService {
 
     @Override
     public void add(AddColorRequest addColorRequest) {
-        if(colorRepository.existsByName(addColorRequest.getName().trim().toUpperCase().replaceAll("\\s", ""))){
-            throw new RuntimeException("Bu renk zaten var!!");
-        }
+        colorBusinessRules.checkByColorName(addColorRequest.getName());
 
         Color color = this.modelMapperService.forRequest()
                 .map(addColorRequest, Color.class);
@@ -59,21 +56,8 @@ public class ColorManager implements ColorService {
 
     @Override
     public void update(UpdateColorRequest updateColorRequest) {
-
-        if(!(colorRepository.existsById(updateColorRequest.getId()))){
-            throw new RuntimeException(updateColorRequest.getId()+" nolu id'ye sahip renk bulunmamaktadır.");
-        }
-
-        //Kullanıcının güncellemek istediği rengin adını , DB 'de aynı renge sahip başka bir renk var mı durumunun kontrolünü sağlayan kod
-        Optional<Color> existingColorOptional = colorRepository.findById(updateColorRequest.getId());
-        Color existingColor = existingColorOptional.get();
-        String newName = updateColorRequest.getName().trim().toUpperCase().replaceAll("\s", "");
-
-        //Eğer DB de girilen renk ismine sahip başka bir renk ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi rengi dahil).
-
-        if (!existingColor.getName().equals(newName) && colorRepository.existsByName(newName)) {
-            throw new RuntimeException("bu renge sahip zaten bir renk var!!");
-        }
+        colorBusinessRules.checkByColorId(updateColorRequest.getId());
+        colorBusinessRules.checkByColorNameWhenUpdate(updateColorRequest.getId(), updateColorRequest.getName());
 
         //Model Mapper işlemi
         Color color = this.modelMapperService.forRequest()
@@ -88,6 +72,7 @@ public class ColorManager implements ColorService {
 
     @Override
     public void delete(int id) {
+        colorBusinessRules.checkByColorId(id);
         colorRepository.deleteById(id);
 
     }

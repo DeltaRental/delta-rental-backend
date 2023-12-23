@@ -22,9 +22,9 @@ teslim alabilecekleri süreci takip etmektir.
 
 Bu projeyi geliştiren ekip:
 
-- **Onurcan Şenel**
-- **Rıdvan Gürsoy**
-- **Merve Keser**
+- <a href = "https://github.com/onursenel">**Onurcan Şenel** </a>
+- <a href = "https://github.com/mervekeser">**Merve Keser** </a>
+- <a href = "https://github.com/rdvngrsy">**Rıdvan Gürsoy** </a>
 
 Ekip üyeleri, yazılım geliştirme konusundaki uzmanlıklarıyla bir araya gelerek başarılı bir iş ortaya koymuştur.
 
