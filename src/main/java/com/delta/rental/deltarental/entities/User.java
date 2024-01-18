@@ -50,13 +50,14 @@ public class User implements UserDetails {
     private List<Employee> Employees;
 
 //    SECURITY
+    @Column(name="roles")
     @Enumerated(EnumType.STRING)
-    private UserRole role;
+    private List<UserRole> authorities;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return List.of(new SimpleGrantedAuthority(role.name()));
+//    }
 
     @Override
     public String getPassword() {

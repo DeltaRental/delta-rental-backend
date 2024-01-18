@@ -1,6 +1,15 @@
 package com.delta.rental.deltarental.enums;
 
-public enum UserRole {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum UserRole implements GrantedAuthority {
     USER,
-    ADMIN
+    ADMIN,
+    MODERATOR,
+    MANAGER;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }

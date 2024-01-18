@@ -1,5 +1,6 @@
-package com.delta.rental.deltarental.config;
+package com.delta.rental.deltarental.core.filters;
 
+import com.delta.rental.deltarental.core.services.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

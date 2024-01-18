@@ -1,4 +1,4 @@
-package com.delta.rental.deltarental.config;
+package com.delta.rental.deltarental.core.configurations;
 
 import com.delta.rental.deltarental.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @RequiredArgsConstructor
-public class ApplicationConfig {
+public class ApplicationConfiguration {
     private final UserRepository userRepository;
 
     @Bean

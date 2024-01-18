@@ -1,4 +1,4 @@
-package com.delta.rental.deltarental.config;
+package com.delta.rental.deltarental.core.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
