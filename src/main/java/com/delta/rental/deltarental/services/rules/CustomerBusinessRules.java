@@ -18,4 +18,11 @@ public class CustomerBusinessRules {
         }
         return customerRepository.findById(id).orElseThrow();
     }
+
+    public void checkByNationalityId(String nationalityId){
+        if((customerRepository.existsByNationalityId(nationalityId))){
+            throw new RuntimeException(nationalityId + " bu kimlik numarası sistemde mevcuttur.");
+        }
+
+    }
 }
