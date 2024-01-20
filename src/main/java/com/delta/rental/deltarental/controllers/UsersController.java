@@ -23,17 +23,5 @@ public class UsersController {
         return userService.getById(id);
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<GetAuthenticationResponse> register(
-            @RequestBody AddUserRequest request
-    ){
-        return ResponseEntity.ok(userService.register(request));
-    }
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<GetAuthenticationResponse> authenticate(
-            @RequestBody AddAuthenticationRequest request
-    ){
-        return ResponseEntity.ok(userService.authenticate(request));
-    }
 }
