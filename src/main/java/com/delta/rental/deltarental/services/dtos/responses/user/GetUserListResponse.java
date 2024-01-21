@@ -26,5 +26,5 @@ public class GetUserListResponse {
 
     private String email;
 
-    private List<UserRole> roles;
+    private List<UserRole> authorities;
 }

@@ -17,4 +17,6 @@ public class UserBusinessRules {
         }
         return userRepository.findById(id).orElseThrow();
     }
+
+
 }

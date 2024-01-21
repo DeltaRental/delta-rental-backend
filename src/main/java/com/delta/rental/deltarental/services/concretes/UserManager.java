@@ -6,6 +6,7 @@ import com.delta.rental.deltarental.repositories.UserRepository;
 import com.delta.rental.deltarental.services.abstracts.UserService;
 import com.delta.rental.deltarental.services.dtos.requests.rental.UpdateRentalRequest;
 import com.delta.rental.deltarental.services.dtos.requests.user.AddUserRequest;
+import com.delta.rental.deltarental.services.dtos.requests.user.UpdateUserRequest;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserResponse;
 import com.delta.rental.deltarental.services.rules.UserBusinessRules;
@@ -37,12 +38,15 @@ public class UserManager implements UserService {
         List<GetUserListResponse> userResponse = userList.stream()
                 .map(user ->this.modelMapperService.forResponse()
                         .map(user, GetUserListResponse.class)).collect(Collectors.toList());
+
+
         return userResponse;
 
     }
 
     @Override
     public void add(AddUserRequest addUserRequest) {
+
         User user = this.modelMapperService.forRequest()
                 .map(addUserRequest, User.class);
 
@@ -53,9 +57,9 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public void update(UpdateRentalRequest updateRentalRequest) {
+    public void update(UpdateUserRequest updateUserRequest) {
         User user = this.modelMapperService.forRequest()
-                .map(updateRentalRequest, User.class);
+                .map(updateUserRequest, User.class);
 
         user.setGsm(user.getGsm().trim().replaceAll("\\s", ""));
         user.setEmail(user.getEmail().trim().toLowerCase());
@@ -67,7 +71,8 @@ public class UserManager implements UserService {
 
     @Override
     public void delete(int id) {
-
+        userBusinessRules.checkByUserId(id);
+        userRepository.deleteById(id);
     }
 
 

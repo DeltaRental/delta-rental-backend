@@ -2,6 +2,7 @@ package com.delta.rental.deltarental.services.abstracts;
 
 import com.delta.rental.deltarental.services.dtos.requests.rental.UpdateRentalRequest;
 import com.delta.rental.deltarental.services.dtos.requests.user.AddUserRequest;
+import com.delta.rental.deltarental.services.dtos.requests.user.UpdateUserRequest;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserResponse;
 
@@ -12,7 +13,7 @@ public interface UserService {
     GetUserResponse getById(int id);
     List<GetUserListResponse> getAll();
     void add(AddUserRequest addUserRequest);
-    void update(UpdateRentalRequest updateRentalRequest);
+    void update(UpdateUserRequest updateUserRequest);
     void delete(int id);
 
 
