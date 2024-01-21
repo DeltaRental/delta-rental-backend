@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class UserBusinessRules {
     private final UserRepository userRepository;
 
-    //DB içerisinde aynı User id' ye sahip user olup olmama durumu kontrolü
+    //DB içerisinde User id' ye sahip user olup olmama durumu kontrolü
     public User checkByUserId(int id){
         if(!(userRepository.existsById(id))){
             throw new RuntimeException(id+" nolu id'ye sahip user bulunmamaktadır.");
