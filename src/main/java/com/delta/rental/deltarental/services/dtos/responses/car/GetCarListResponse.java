@@ -21,4 +21,6 @@ public class GetCarListResponse {
     private String modelName;
 
     private String colorName;
+
+    private boolean status;
 }

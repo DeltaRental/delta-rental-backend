@@ -32,6 +32,9 @@ public class Car {
     @Column(name = "plate")
     private String plate;
 
+    @Column(name = "status")
+    private boolean status;
+
     @ManyToOne
     @JoinColumn(name = "model_id")
     private Model model;

@@ -1,5 +1,6 @@
 package com.delta.rental.deltarental.services.abstracts;
 
+import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
 import com.delta.rental.deltarental.services.dtos.requests.model.AddModelRequest;
 import com.delta.rental.deltarental.services.dtos.requests.model.UpdateModelRequest;
 import com.delta.rental.deltarental.services.dtos.requests.rental.AddRentalRequest;
@@ -18,4 +19,8 @@ public interface RentalService {
     void add (AddRentalRequest addRentalRequest);
     void update(UpdateRentalRequest updateRentalRequest);
     void delete(int id);
+
+    void carReturn(int carId, UpdateRentalRequest updateRentalRequest,AddRentalRequest addRentalRequest);
+
+
 }

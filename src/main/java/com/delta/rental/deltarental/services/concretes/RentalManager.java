@@ -7,6 +7,7 @@ import com.delta.rental.deltarental.services.abstracts.CarService;
 import com.delta.rental.deltarental.services.abstracts.CustomerService;
 import com.delta.rental.deltarental.services.abstracts.EmployeeService;
 import com.delta.rental.deltarental.services.abstracts.RentalService;
+import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
 import com.delta.rental.deltarental.services.dtos.requests.rental.AddRentalRequest;
 import com.delta.rental.deltarental.services.dtos.requests.rental.UpdateRentalRequest;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
@@ -16,6 +17,7 @@ import com.delta.rental.deltarental.services.rules.RentalBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -70,12 +72,17 @@ public class RentalManager implements RentalService {
         GetCarResponse carId = carService.getById(addRentalRequest.getCarId());
         rental.setStartKilometer(carId.getKilometer());
         rental.setEndKilometer(null);
-
+        //this.carService.update(this.modelMapperService.forRequest().map(carId,UpdateCarRequest.class));
+        //UpdateCarRequest updateCarRequest = carId.setStatus(false);
+        //carService.update(carId.setStatus());
 
         //kiralamayı gün sayısına bağlı olarak hesaplanması ve toplam fiyata eklenmesi
         rental.setTotalPrice(carId.getDailyPrice() * rentalDays);
 
         rentalRepository.save(rental);
+
+        //*
+        //GetCarResponse carResponse = carService.getById(addRentalRequest.getCarId());
 
 
     }
@@ -116,6 +123,20 @@ public class RentalManager implements RentalService {
     public void delete(int id) {
         rentalBusinessRules.checkByRentalId(id);
         rentalRepository.deleteById(id);
+    }
+
+    @Override
+    public void carReturn(int carId,UpdateRentalRequest updateRentalRequest,AddRentalRequest addRentalRequest) {
+        GetCarResponse carResponse = carService.getById(carId);
+        if(updateRentalRequest.getReturnDate().isBefore(LocalDate.now())){
+            carResponse.setStatus(false);
+        }else {
+            carResponse.setStatus(true);
+        }
+
+        this.carService.update(this.modelMapperService.forRequest().map(carResponse,UpdateCarRequest.class));
 
     }
+
+
 }

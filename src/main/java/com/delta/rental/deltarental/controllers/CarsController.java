@@ -45,4 +45,9 @@ public class CarsController {
     public void delete(@PathVariable int id){
         carService.delete(id);
     }
+
+    @GetMapping("/getCarAvailability")
+    public List<GetCarListResponse> getCarAvailability(){
+        return carService.getAllByIsStatusTrue();
+    }
 }

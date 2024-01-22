@@ -33,6 +33,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/**",
                                 "/api/cars/**",
+                                "/api/rentals/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui",
                                 "/swagger-resources/**",
