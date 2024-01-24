@@ -19,6 +19,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/models")
+@CrossOrigin
 public class ModelsController {
     private final ModelService modelService;
 
