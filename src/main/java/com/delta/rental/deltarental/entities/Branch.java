@@ -1,6 +1,7 @@
 package com.delta.rental.deltarental.entities;
 
 
+import com.delta.rental.deltarental.enums.City;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -38,12 +39,18 @@ public class Branch {
     @Column(name = "post_code")
     private String postCode;
 
-    @ManyToOne
-    @JoinColumn(name = "city_id")
+    @Column(name = "city_id")
+    @Enumerated(EnumType.ORDINAL)
     private City city;
+
+    //@ManyToOne
+    //@JoinColumn(name = "city_id")
+    //private com.delta.rental.deltarental.entities.City city;
 
     @OneToMany(mappedBy = "branch")
     @JsonIgnore
     private List<Car> cars;
+
+
 
 }
