@@ -47,4 +47,8 @@ public class Car {
     @JsonIgnore
     private List<Rental> Rentals;
 
+    @ManyToOne
+    @JoinColumn(name = "branch_id")
+    private Branch branch;
+
 }

@@ -1,10 +1,13 @@
 package com.delta.rental.deltarental.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "branches")
@@ -38,5 +41,9 @@ public class Branch {
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
+
+    @OneToMany(mappedBy = "branch")
+    @JsonIgnore
+    private List<Car> cars;
 
 }
