@@ -1,6 +1,7 @@
 package com.delta.rental.deltarental.services.dtos.requests.branch;
 
 
+import com.delta.rental.deltarental.enums.City;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,5 +33,7 @@ public class AddBranchRequest {
     @NotBlank(message = "Posta Kodu boş olamaz!")
     @Length(min=5,max = 5,message = "Posta kodu 5 basamaklı olmalıdır!")
     private String postCode;
+
+    private City city;
 
 }

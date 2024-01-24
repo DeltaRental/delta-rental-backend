@@ -1,6 +1,7 @@
 package com.delta.rental.deltarental.services.dtos.responses.branch;
 
 
+import com.delta.rental.deltarental.enums.City;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,4 +23,6 @@ public class GetBranchResponse {
     private String managerName;
 
     private String postCode;
+
+    private City city;
 }

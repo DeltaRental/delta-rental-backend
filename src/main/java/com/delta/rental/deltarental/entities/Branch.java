@@ -39,8 +39,8 @@ public class Branch {
     @Column(name = "post_code")
     private String postCode;
 
-    @Column(name = "city_id")
-    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "city")
+    @Enumerated(EnumType.STRING)
     private City city;
 
     //@ManyToOne

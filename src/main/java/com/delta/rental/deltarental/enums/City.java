@@ -1,18 +1,18 @@
 package com.delta.rental.deltarental.enums;
 
 public enum City {
-    ankara(6),
-    antalya(7),
-    istanbul(34);
+    ISTANBUL("06"),
+    ANKARA("Ankara"),
+    IZMIR("İzmir"),
+    BURSA("Bursa");
 
-    private final int value;
-
-    City(int value) {
-        this.value = value;
+    private final String description;
+    City(String description) {
+        this.description=description;
     }
 
-    public int getValue() {
-        return value;
+    public String getCityName() {
+        return description;
     }
 }
 
