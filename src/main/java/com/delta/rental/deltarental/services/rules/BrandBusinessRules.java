@@ -33,7 +33,7 @@ public class BrandBusinessRules {
         Brand existingBrand = existingBrandOptional.get();
         String newName = name.trim().toUpperCase().replaceAll("\s", "");
 
-        //Eğer DB de girilen palakaya sahip başka bir marka ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi marka ismi dahil).
+        //Eğer DB de girilen markaya sahip başka bir marka ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi marka ismi dahil).
         if (!existingBrand.getName().equals(newName) && brandRepository.existsByName(newName)) {
             throw new RuntimeException("bu marka ismi zaten var !!");
         }

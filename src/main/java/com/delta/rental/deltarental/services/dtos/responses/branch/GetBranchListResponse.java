@@ -25,6 +25,4 @@ public class GetBranchListResponse {
     private String managerName;
 
     private String postCode;
-
-    private int cityId;
 }

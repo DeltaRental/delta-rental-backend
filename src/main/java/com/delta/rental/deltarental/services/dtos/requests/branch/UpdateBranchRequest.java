@@ -37,6 +37,4 @@ public class UpdateBranchRequest {
     @Length(min=5,max = 5,message = "Posta kodu 5 basamaklı olmalıdır!")
     private String postCode;
 
-    @Positive(message = "City id 0' dan küçük bir değer olamaz.")
-    private int cityId;
 }

@@ -9,12 +9,14 @@ import com.delta.rental.deltarental.services.dtos.requests.branch.AddBranchReque
 import com.delta.rental.deltarental.services.dtos.requests.branch.UpdateBranchRequest;
 import com.delta.rental.deltarental.services.dtos.responses.branch.GetBranchListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.branch.GetBranchResponse;
+import com.delta.rental.deltarental.services.dtos.responses.brand.GetBrandListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.brand.GetBrandResponse;
 import com.delta.rental.deltarental.services.rules.BranchBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -31,21 +33,45 @@ public class BranchManager implements BranchService {
 
     @Override
     public List<GetBranchListResponse> getAll() {
-        return null;
+        List<Branch> branchList = branchRepository.findAll();
+
+        List<GetBranchListResponse> branchResponse = branchList.stream()
+                .map(branch ->this.modelMapperService.forResponse()
+                        .map(branch, GetBranchListResponse.class)).collect(Collectors.toList());
+        return branchResponse;
     }
 
     @Override
     public void add(AddBranchRequest addBranchRequest) {
+        branchBusinessRules.checkByBranchName(addBranchRequest.getName());
 
+        Branch branch = this.modelMapperService.forRequest()
+                .map(addBranchRequest, Branch.class);
+
+        branch.setName(branch.getName().trim().toUpperCase().replaceAll("\\s", ""));
+
+        branchRepository.save(branch);
     }
 
     @Override
     public void update(UpdateBranchRequest updateBranchRequest) {
+        branchBusinessRules.checkByBranchId(updateBranchRequest.getId());
+        branchBusinessRules.checkByBranchNameWhenUpdate(updateBranchRequest.getId(), updateBranchRequest.getName());
+
+        //Model Mapper işlemi
+        Branch branch = this.modelMapperService.forRequest()
+                .map(updateBranchRequest, Branch.class);
+
+        branch.setName(branch.getName().trim().toUpperCase().replaceAll("\\s", ""));
+
+        branchRepository.save(branch);
 
     }
 
     @Override
     public void delete(int id) {
+        branchBusinessRules.checkByBranchId(id);
+        branchRepository.deleteById(id);
 
     }
 }
