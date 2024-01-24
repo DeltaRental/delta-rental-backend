@@ -1,5 +1,8 @@
 package com.delta.rental.deltarental.services.dtos.responses.car;
 
+import com.delta.rental.deltarental.enums.CarState;
+import com.delta.rental.deltarental.enums.FuelType;
+import com.delta.rental.deltarental.enums.GearType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +25,9 @@ public class GetCarListResponse {
 
     private String colorName;
 
-    private boolean status;
+    private CarState carState;
+
+    private GearType gearType;
+
+    private FuelType fuelType;
 }

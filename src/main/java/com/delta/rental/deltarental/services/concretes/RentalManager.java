@@ -124,9 +124,8 @@ public class RentalManager implements RentalService {
         rentalBusinessRules.checkByRentalId(id);
         rentalRepository.deleteById(id);
     }
-
-    @Override
-    public void carReturn(int carId,UpdateRentalRequest updateRentalRequest,AddRentalRequest addRentalRequest) {
+    //   @Override
+/*    public void carReturn(int carId,UpdateRentalRequest updateRentalRequest,AddRentalRequest addRentalRequest) {
         GetCarResponse carResponse = carService.getById(carId);
         if(updateRentalRequest.getReturnDate().isBefore(LocalDate.now())){
             carResponse.setStatus(false);
@@ -136,7 +135,7 @@ public class RentalManager implements RentalService {
 
         this.carService.update(this.modelMapperService.forRequest().map(carResponse,UpdateCarRequest.class));
 
-    }
+    }*/
 
 
 }

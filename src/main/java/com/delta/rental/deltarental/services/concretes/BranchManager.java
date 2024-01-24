@@ -3,6 +3,7 @@ package com.delta.rental.deltarental.services.concretes;
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.Branch;
 import com.delta.rental.deltarental.entities.Brand;
+import com.delta.rental.deltarental.enums.City;
 import com.delta.rental.deltarental.repositories.BranchRepository;
 import com.delta.rental.deltarental.services.abstracts.BranchService;
 import com.delta.rental.deltarental.services.dtos.requests.branch.AddBranchRequest;
@@ -51,6 +52,7 @@ public class BranchManager implements BranchService {
         branch.setName(branch.getName().trim().toUpperCase().replaceAll("\\s", ""));
 
         branchRepository.save(branch);
+
     }
 
     @Override
@@ -72,6 +74,7 @@ public class BranchManager implements BranchService {
     public void delete(int id) {
         branchBusinessRules.checkByBranchId(id);
         branchRepository.deleteById(id);
+
 
     }
 }

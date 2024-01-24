@@ -16,7 +16,7 @@ public interface CarRepository extends JpaRepository<Car,Integer> {
 
     boolean existsByColorId(int id);
 
-    List<Car> findAllByStatusTrue();
+    //List<Car> findAllByStatusTrue();
 
 }
 

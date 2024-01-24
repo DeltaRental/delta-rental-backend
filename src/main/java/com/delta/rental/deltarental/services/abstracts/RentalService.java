@@ -20,7 +20,7 @@ public interface RentalService {
     void update(UpdateRentalRequest updateRentalRequest);
     void delete(int id);
 
-    void carReturn(int carId, UpdateRentalRequest updateRentalRequest,AddRentalRequest addRentalRequest);
+    //void carReturn(int carId, UpdateRentalRequest updateRentalRequest,AddRentalRequest addRentalRequest);
 
 
 }

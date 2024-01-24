@@ -82,13 +82,13 @@ public class CarManager implements CarService {
         carRepository.save(car);
     }
 
-    @Override
+/*    @Override
     public List<GetCarListResponse> getAllByIsStatusTrue() {
         return carRepository.findAllByStatusTrue().stream()
                 .map(car -> this.modelMapperService.forResponse()
                         .map(car,GetCarListResponse.class)
                 ).toList();
-    }
+    }*/
 
 
 }

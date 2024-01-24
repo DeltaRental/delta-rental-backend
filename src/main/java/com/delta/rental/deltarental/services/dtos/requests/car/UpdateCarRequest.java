@@ -1,5 +1,8 @@
 package com.delta.rental.deltarental.services.dtos.requests.car;
 
+import com.delta.rental.deltarental.enums.CarState;
+import com.delta.rental.deltarental.enums.FuelType;
+import com.delta.rental.deltarental.enums.GearType;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,4 +37,13 @@ public class UpdateCarRequest {
 
     @Positive(message = "Color id 0' dan küçük bir değer olamaz.")
     private int colorId;
+
+    @Positive(message = "Color id 0' dan küçük bir değer olamaz.")
+    private int branchId;
+
+    private CarState carState;
+
+    private GearType gearType;
+
+    private FuelType fuelType;
 }

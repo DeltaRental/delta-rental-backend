@@ -19,9 +19,6 @@ import java.util.List;
 public class BranchesController {
     private BranchService branchService;
 
-
-
-
     @GetMapping("{id}")
     public GetBranchResponse getById(int id){
         return branchService.getById(id);

@@ -46,8 +46,8 @@ public class CarsController {
         carService.delete(id);
     }
 
-    @GetMapping("/getCarAvailability")
-    public List<GetCarListResponse> getCarAvailability(){
-        return carService.getAllByIsStatusTrue();
-    }
+    //@GetMapping("/getCarAvailability")
+    //public List<GetCarListResponse> getCarAvailability(){
+    //    return carService.getAllByIsStatusTrue();
+    //}
 }

@@ -1,5 +1,8 @@
 package com.delta.rental.deltarental.entities;
 
+import com.delta.rental.deltarental.enums.CarState;
+import com.delta.rental.deltarental.enums.FuelType;
+import com.delta.rental.deltarental.enums.GearType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,8 +35,18 @@ public class Car {
     @Column(name = "plate")
     private String plate;
 
-    @Column(name = "status")
-    private boolean status;
+    @Column(name = "gear_type")
+    @Enumerated(EnumType.STRING)
+    private GearType gearType;
+
+    @Column(name = "car_state")
+    @Enumerated(EnumType.STRING)
+    private CarState carState;
+
+    @Column(name = "fuel_type")
+    @Enumerated(EnumType.STRING)
+    private FuelType fuelType;
+
 
     @ManyToOne
     @JoinColumn(name = "model_id")
