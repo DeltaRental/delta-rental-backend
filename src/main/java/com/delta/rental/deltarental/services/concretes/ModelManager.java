@@ -1,9 +1,8 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
-import com.delta.rental.deltarental.entities.Model;
+import com.delta.rental.deltarental.entities.concretes.Model;
 import com.delta.rental.deltarental.repositories.ModelRepository;
-import com.delta.rental.deltarental.services.abstracts.BrandService;
 import com.delta.rental.deltarental.services.abstracts.ModelService;
 import com.delta.rental.deltarental.services.dtos.requests.model.AddModelRequest;
 import com.delta.rental.deltarental.services.dtos.requests.model.UpdateModelRequest;
@@ -14,7 +13,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor

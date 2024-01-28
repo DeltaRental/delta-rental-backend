@@ -1,7 +1,7 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
-import com.delta.rental.deltarental.entities.Brand;
+import com.delta.rental.deltarental.entities.concretes.Brand;
 import com.delta.rental.deltarental.repositories.BrandRepository;
 import com.delta.rental.deltarental.services.abstracts.BrandService;
 import com.delta.rental.deltarental.services.dtos.requests.brand.AddBrandRequest;

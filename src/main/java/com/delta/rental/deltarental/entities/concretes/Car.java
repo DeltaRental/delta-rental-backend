@@ -1,5 +1,6 @@
-package com.delta.rental.deltarental.entities;
+package com.delta.rental.deltarental.entities.concretes;
 
+import com.delta.rental.deltarental.entities.abstracts.BaseEntity;
 import com.delta.rental.deltarental.enums.CarState;
 import com.delta.rental.deltarental.enums.FuelType;
 import com.delta.rental.deltarental.enums.GearType;
@@ -17,11 +18,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Car {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Car extends BaseEntity {
 
     @Column(name = "kilometer")
     private double kilometer;

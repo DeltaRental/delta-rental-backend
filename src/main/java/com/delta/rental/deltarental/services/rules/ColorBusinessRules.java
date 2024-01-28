@@ -1,6 +1,6 @@
 package com.delta.rental.deltarental.services.rules;
 
-import com.delta.rental.deltarental.entities.Color;
+import com.delta.rental.deltarental.entities.concretes.Color;
 import com.delta.rental.deltarental.repositories.ColorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

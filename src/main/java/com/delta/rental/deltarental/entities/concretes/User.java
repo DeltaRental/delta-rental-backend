@@ -1,5 +1,8 @@
-package com.delta.rental.deltarental.entities;
+package com.delta.rental.deltarental.entities.concretes;
 
+import com.delta.rental.deltarental.entities.abstracts.BaseEntity;
+import com.delta.rental.deltarental.entities.concretes.Customer;
+import com.delta.rental.deltarental.entities.concretes.Employee;
 import com.delta.rental.deltarental.enums.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -7,11 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -20,11 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User implements UserDetails {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class User extends BaseEntity implements UserDetails {
 
     @Column(name = "name")
     private String name;

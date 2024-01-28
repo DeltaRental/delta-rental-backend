@@ -1,5 +1,6 @@
-package com.delta.rental.deltarental.entities;
+package com.delta.rental.deltarental.entities.concretes;
 
+import com.delta.rental.deltarental.entities.abstracts.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,11 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Customer extends BaseEntity {
 
     @Column(name = "nationality_id")
     private String nationalityId;

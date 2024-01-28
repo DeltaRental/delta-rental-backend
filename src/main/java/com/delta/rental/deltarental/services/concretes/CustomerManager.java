@@ -1,17 +1,14 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
-import com.delta.rental.deltarental.entities.Brand;
-import com.delta.rental.deltarental.entities.Customer;
+import com.delta.rental.deltarental.entities.concretes.Customer;
 import com.delta.rental.deltarental.repositories.CustomerRepository;
 import com.delta.rental.deltarental.services.abstracts.CustomerService;
 import com.delta.rental.deltarental.services.dtos.requests.customer.AddCustomerRequest;
 import com.delta.rental.deltarental.services.dtos.requests.customer.UpdateCustomerRequest;
-import com.delta.rental.deltarental.services.dtos.responses.brand.GetBrandResponse;
 import com.delta.rental.deltarental.services.dtos.responses.customer.GetCustomerListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.customer.GetCustomerResponse;
 import com.delta.rental.deltarental.services.rules.CustomerBusinessRules;
-import com.delta.rental.deltarental.services.rules.RentalBusinessRules;
 import com.delta.rental.deltarental.services.rules.UserBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

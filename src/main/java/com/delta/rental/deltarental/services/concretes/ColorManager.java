@@ -1,8 +1,7 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
-import com.delta.rental.deltarental.entities.Car;
-import com.delta.rental.deltarental.entities.Color;
+import com.delta.rental.deltarental.entities.concretes.Color;
 import com.delta.rental.deltarental.repositories.ColorRepository;
 import com.delta.rental.deltarental.services.abstracts.ColorService;
 import com.delta.rental.deltarental.services.dtos.requests.color.AddColorRequest;
@@ -14,7 +13,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor

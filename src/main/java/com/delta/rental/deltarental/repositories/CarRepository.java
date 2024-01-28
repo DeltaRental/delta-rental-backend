@@ -1,11 +1,7 @@
 package com.delta.rental.deltarental.repositories;
 
-import com.delta.rental.deltarental.entities.Car;
-import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
+import com.delta.rental.deltarental.entities.concretes.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
-import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car,Integer> {
     boolean existsByPlate(String plate);

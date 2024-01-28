@@ -1,7 +1,7 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.services.JwtService;
-import com.delta.rental.deltarental.entities.User;
+import com.delta.rental.deltarental.entities.concretes.User;
 import com.delta.rental.deltarental.repositories.UserRepository;
 import com.delta.rental.deltarental.services.abstracts.AuthService;
 import com.delta.rental.deltarental.services.dtos.requests.authentication.AddAuthenticationRequest;
@@ -25,7 +25,6 @@ public class AuthManager implements AuthService {
     @Override
     public GetAuthenticationResponse updateUserInformation(UpdateUserRequest request) {
         var user = User.builder()
-                .id(request.getId())
                 .name(request.getName())
                 .surname(request.getSurname())
                 .email(request.getEmail())

@@ -1,17 +1,13 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
-import com.delta.rental.deltarental.entities.Branch;
-import com.delta.rental.deltarental.entities.Brand;
-import com.delta.rental.deltarental.enums.City;
+import com.delta.rental.deltarental.entities.concretes.Branch;
 import com.delta.rental.deltarental.repositories.BranchRepository;
 import com.delta.rental.deltarental.services.abstracts.BranchService;
 import com.delta.rental.deltarental.services.dtos.requests.branch.AddBranchRequest;
 import com.delta.rental.deltarental.services.dtos.requests.branch.UpdateBranchRequest;
 import com.delta.rental.deltarental.services.dtos.responses.branch.GetBranchListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.branch.GetBranchResponse;
-import com.delta.rental.deltarental.services.dtos.responses.brand.GetBrandListResponse;
-import com.delta.rental.deltarental.services.dtos.responses.brand.GetBrandResponse;
 import com.delta.rental.deltarental.services.rules.BranchBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

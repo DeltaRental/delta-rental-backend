@@ -1,7 +1,7 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
-import com.delta.rental.deltarental.entities.Car;
+import com.delta.rental.deltarental.entities.concretes.Car;
 import com.delta.rental.deltarental.repositories.CarRepository;
 import com.delta.rental.deltarental.services.abstracts.CarService;
 import com.delta.rental.deltarental.services.dtos.requests.car.AddCarRequest;

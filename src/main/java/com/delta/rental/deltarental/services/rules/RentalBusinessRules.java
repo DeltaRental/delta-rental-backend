@@ -1,13 +1,10 @@
 package com.delta.rental.deltarental.services.rules;
 
-import com.delta.rental.deltarental.entities.Car;
-import com.delta.rental.deltarental.entities.Rental;
+import com.delta.rental.deltarental.entities.concretes.Rental;
 import com.delta.rental.deltarental.repositories.RentalRepository;
 import com.delta.rental.deltarental.services.abstracts.CarService;
 import com.delta.rental.deltarental.services.abstracts.CustomerService;
 import com.delta.rental.deltarental.services.abstracts.EmployeeService;
-import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
-import com.delta.rental.deltarental.services.dtos.requests.rental.UpdateRentalRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

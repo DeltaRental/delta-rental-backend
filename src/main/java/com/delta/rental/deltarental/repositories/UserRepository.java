@@ -1,6 +1,6 @@
 package com.delta.rental.deltarental.repositories;
 
-import com.delta.rental.deltarental.entities.User;
+import com.delta.rental.deltarental.entities.concretes.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

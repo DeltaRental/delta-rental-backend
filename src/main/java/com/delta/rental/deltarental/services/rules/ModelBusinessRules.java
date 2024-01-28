@@ -1,6 +1,6 @@
 package com.delta.rental.deltarental.services.rules;
 
-import com.delta.rental.deltarental.entities.Model;
+import com.delta.rental.deltarental.entities.concretes.Model;
 import com.delta.rental.deltarental.repositories.ModelRepository;
 import com.delta.rental.deltarental.services.abstracts.BrandService;
 import lombok.AllArgsConstructor;

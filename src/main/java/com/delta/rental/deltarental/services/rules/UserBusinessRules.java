@@ -1,6 +1,6 @@
 package com.delta.rental.deltarental.services.rules;
 
-import com.delta.rental.deltarental.entities.User;
+import com.delta.rental.deltarental.entities.concretes.User;
 import com.delta.rental.deltarental.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,5 @@
 package com.delta.rental.deltarental.services.dtos.requests.rental;
 
-import com.delta.rental.deltarental.entities.User;
-import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

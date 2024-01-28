@@ -1,5 +1,6 @@
-package com.delta.rental.deltarental.entities;
+package com.delta.rental.deltarental.entities.concretes;
 
+import com.delta.rental.deltarental.entities.abstracts.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,22 +10,17 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "colors")
+@Table(name = "brands")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Color {
-
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Brand extends BaseEntity {
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "color")
+    @OneToMany(mappedBy = "brand")
     @JsonIgnore
-    private List<Car> cars;
+    private List<Model> Models;
+
 }

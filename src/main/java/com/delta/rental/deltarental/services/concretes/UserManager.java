@@ -1,10 +1,9 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
-import com.delta.rental.deltarental.entities.User;
+import com.delta.rental.deltarental.entities.concretes.User;
 import com.delta.rental.deltarental.repositories.UserRepository;
 import com.delta.rental.deltarental.services.abstracts.UserService;
-import com.delta.rental.deltarental.services.dtos.requests.rental.UpdateRentalRequest;
 import com.delta.rental.deltarental.services.dtos.requests.user.AddUserRequest;
 import com.delta.rental.deltarental.services.dtos.requests.user.UpdateUserRequest;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserListResponse;

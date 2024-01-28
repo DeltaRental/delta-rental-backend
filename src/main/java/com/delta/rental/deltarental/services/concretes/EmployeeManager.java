@@ -1,15 +1,11 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
-import com.delta.rental.deltarental.entities.Car;
-import com.delta.rental.deltarental.entities.Customer;
-import com.delta.rental.deltarental.entities.Employee;
+import com.delta.rental.deltarental.entities.concretes.Employee;
 import com.delta.rental.deltarental.repositories.EmployeeRepository;
 import com.delta.rental.deltarental.services.abstracts.EmployeeService;
 import com.delta.rental.deltarental.services.dtos.requests.employee.AddEmployeeRequest;
 import com.delta.rental.deltarental.services.dtos.requests.employee.UpdateEmployeeRequest;
-import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
-import com.delta.rental.deltarental.services.dtos.responses.customer.GetCustomerResponse;
 import com.delta.rental.deltarental.services.dtos.responses.employee.GetEmployeeListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.employee.GetEmployeeResponse;
 import com.delta.rental.deltarental.services.rules.EmployeeBusinessRules;

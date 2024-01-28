@@ -1,6 +1,6 @@
 package com.delta.rental.deltarental.services.rules;
 
-import com.delta.rental.deltarental.entities.Car;
+import com.delta.rental.deltarental.entities.concretes.Car;
 import com.delta.rental.deltarental.repositories.CarRepository;
 import com.delta.rental.deltarental.services.abstracts.ColorService;
 import com.delta.rental.deltarental.services.abstracts.ModelService;

@@ -1,5 +1,9 @@
-package com.delta.rental.deltarental.entities;
+package com.delta.rental.deltarental.entities.concretes;
 
+import com.delta.rental.deltarental.entities.abstracts.BaseEntity;
+import com.delta.rental.deltarental.entities.concretes.Car;
+import com.delta.rental.deltarental.entities.concretes.Customer;
+import com.delta.rental.deltarental.entities.concretes.Employee;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,11 +16,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Rental {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Rental extends BaseEntity {
 
     @Column(name = "start_date")
     private LocalDate startDate;

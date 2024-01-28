@@ -1,13 +1,12 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
-import com.delta.rental.deltarental.entities.Rental;
+import com.delta.rental.deltarental.entities.concretes.Rental;
 import com.delta.rental.deltarental.repositories.RentalRepository;
 import com.delta.rental.deltarental.services.abstracts.CarService;
 import com.delta.rental.deltarental.services.abstracts.CustomerService;
 import com.delta.rental.deltarental.services.abstracts.EmployeeService;
 import com.delta.rental.deltarental.services.abstracts.RentalService;
-import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
 import com.delta.rental.deltarental.services.dtos.requests.rental.AddRentalRequest;
 import com.delta.rental.deltarental.services.dtos.requests.rental.UpdateRentalRequest;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
@@ -17,7 +16,6 @@ import com.delta.rental.deltarental.services.rules.RentalBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
