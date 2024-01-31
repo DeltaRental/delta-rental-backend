@@ -3,6 +3,7 @@ package com.delta.rental.deltarental.services.dtos.requests.car;
 import com.delta.rental.deltarental.enums.CarState;
 import com.delta.rental.deltarental.enums.FuelType;
 import com.delta.rental.deltarental.enums.GearType;
+import com.delta.rental.deltarental.services.constants.Messages;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,33 +13,33 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCarRequest {
-    @NotNull(message = "Id boş geçilemez")
-    @Positive(message = "Id 0'dan küçük olamaz")
+    @NotNull(message = Messages.IdMessages.ID_NOT_NULL)
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int id;
 
-    @NotNull(message = "Kilometre boş geçilemez")
-    @PositiveOrZero(message = "Kilometre 0 veya 0'dan küçük olamaz")
+    @NotNull(message = Messages.CarMessages.KILOMETER_NOT_NULL)
+    @Positive(message = Messages.CarMessages.KILOMETER_NOT_NEGATIVE)
     private double kilometer;
 
-    @NotNull(message = "Yıl boş geçilemez")
-    @Min(value = 2005, message = "Yıl 2005'den küçük olamaz")
-    @Max(value = 2024, message = "Yıl 2024'den büyük olamaz")
+    @NotNull(message = Messages.CarMessages.YEAR_NOT_NULL)
+    @Min(value = 2005, message = Messages.CarMessages.YEAR_NOT_LESS_THAN_TWO_THOUSAND_FIVE)
+    @Max(value = 2024, message = Messages.CarMessages.YEAR_NOT_GREATER_THAN_TWO_THOUSAND_TWENTY_FOUR)
     private int year;
 
-    @Positive(message = "Günlük kiralama ücreti 0'dan küçük olamaz")
+    @Positive(message = Messages.CarMessages.DAILY_PRICE_NOT_NEGATIVE)
     private double dailyPrice;
 
     //@Pattern(regexp = "(?i)^[0-9]{2}[A-Z]{1,3}[0-9]{1,4}$", message = "Boşluksuz ve geçerli bir plaka giriniz.")
-    @Pattern(regexp = "(?i)^\\s*[0-9]{2}\\s*[A-Z]{1,3}\\s*[0-9]{1,4}\\s*$", message = "geçerli bir plaka giriniz.")
+    @Pattern(regexp = "(?i)^\\s*[0-9]{2}\\s*[A-Z]{1,3}\\s*[0-9]{1,4}\\s*$", message = Messages.CarMessages.ENTER_VALID_PLATE)
     private String plate;
 
-    @Positive(message = "Model id 0' dan küçük bir değer olamaz.")
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int modelId;
 
-    @Positive(message = "Color id 0' dan küçük bir değer olamaz.")
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int colorId;
 
-    @Positive(message = "Color id 0' dan küçük bir değer olamaz.")
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int branchId;
 
     private CarState carState;

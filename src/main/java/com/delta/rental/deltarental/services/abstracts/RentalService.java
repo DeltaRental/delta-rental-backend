@@ -14,7 +14,6 @@ import java.util.List;
 
 public interface RentalService {
     GetRentalResponse getById(int id);
-
     List<GetRentalListResponse> getAll();
     void add (AddRentalRequest addRentalRequest);
     void update(UpdateRentalRequest updateRentalRequest);

@@ -1,5 +1,6 @@
 package com.delta.rental.deltarental.services.dtos.requests.rental;
 
+import com.delta.rental.deltarental.services.constants.Messages;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -12,8 +13,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateRentalRequest {
-    @NotNull(message = "Id boş geçilemez")
-    @Positive(message = "Id 0'dan küçük olamaz")
+    @NotNull(message = Messages.IdMessages.ID_NOT_NULL)
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int id;
 
 

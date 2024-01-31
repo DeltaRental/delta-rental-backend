@@ -26,4 +26,7 @@ public class Customer extends BaseEntity {
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     private List<Rental> Rentals;
+
+   /* @OneToMany(mappedBy = "customer")
+    private List<CreditCard> creditCards;*/
 }

@@ -1,6 +1,7 @@
 package com.delta.rental.deltarental.services.dtos.requests.model;
 
 
+import com.delta.rental.deltarental.services.constants.Messages;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -14,15 +15,15 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 public class UpdateModelRequest {
 
-    @NotNull(message = "Id boş geçilemez")
-    @Positive(message = "Id 0'dan küçük olamaz")
+    @NotNull(message = Messages.IdMessages.ID_NOT_NULL)
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int id;
 
-    @NotBlank(message = "Model adı boş olamaz!")
-    @Length(min = 2,message = "Girilen model en az 2 harfli olmalıdır.")
+    @NotBlank(message = Messages.ModelMessages.MODEL_NAME_NOT_BLANK)
+    @Length(min = 2,message = Messages.ModelMessages.MODEL_NAME_LENGTH_MIN_TWO_LETTERS)
     private String name;
 
-    @NotNull(message = "Brand Id boş geçilemez")
-    @Positive(message = "Brand Id 0'dan küçük olamaz")
+    @NotNull(message = Messages.IdMessages.ID_NOT_NULL)
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int brandId;
 }

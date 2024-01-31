@@ -1,5 +1,6 @@
 package com.delta.rental.deltarental.services.dtos.requests.customer;
 
+import com.delta.rental.deltarental.services.constants.Messages;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
@@ -13,16 +14,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateCustomerRequest {
 
-    @NotNull(message = "Id boş geçilemez")
-    @Positive(message = "Id 0'dan küçük olamaz")
+    @NotNull(message = Messages.IdMessages.ID_NOT_NEGATIVE)
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int id;
 
-    @NotNull(message = "Kimlik numarası boş geçilemez")
-    @Size(min=11, max=11, message = "Kimlik numarası 11 haneli olmak zorundadır.")
-    @Pattern(regexp = "^[0-9]+$", message = "Kimlik numarası sadece rakamlardan oluşmalıdır.")
+    @NotNull(message = Messages.CustomerMessages.CUSTOMER_NATIONALITY_ID_NOT_NULL)
+    @Size(min=11, max=11, message = Messages.CustomerMessages.CUSTOMER_NATIONALITY_ID_LENGTH_ELEVEN_DIGITS)
+    @Pattern(regexp = "^[0-9]+$", message = Messages.CustomerMessages.CUSTOMER_NATIONALITY_ID_ONLY_NUMBERS)
     private String nationalityId;
 
-    @Positive(message = "User Id 0'dan küçük olamaz")
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int userId;
 
 }

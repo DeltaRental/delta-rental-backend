@@ -2,6 +2,7 @@ package com.delta.rental.deltarental.services.rules;
 
 import com.delta.rental.deltarental.entities.concretes.Brand;
 import com.delta.rental.deltarental.repositories.BrandRepository;
+import com.delta.rental.deltarental.services.constants.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class BrandBusinessRules {
     //DB içerisinde aynı Brand id' ye sahip marka olup olmama durumu kontrolü
     public Brand checkByBrandId(int id){
         if(!(brandRepository.existsById(id))){
-            throw new RuntimeException(id+" nolu id'ye sahip marka bulunmamaktadır.");
+            throw new RuntimeException(id+ Messages.BrandMessages.BRAND_NOT_FOUND);
         }
         return brandRepository.findById(id).orElseThrow();
     }
@@ -23,7 +24,7 @@ public class BrandBusinessRules {
     //DB içerisinde aynı marka adına sahip markaların var olup olmama kontrolü
     public void checkByBrandName(String name){
         if(brandRepository.existsByName(name.trim().toUpperCase().replaceAll("\\s", ""))){
-            throw new RuntimeException("Bu araba markası zaten var!!");
+            throw new RuntimeException(Messages.BrandMessages.SAME_BRAND_NAME_EXISTS);
         }
     }
 
@@ -35,7 +36,7 @@ public class BrandBusinessRules {
 
         //Eğer DB de girilen markaya sahip başka bir marka ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi marka ismi dahil).
         if (!existingBrand.getName().equals(newName) && brandRepository.existsByName(newName)) {
-            throw new RuntimeException("bu marka ismi zaten var !!");
+            throw new RuntimeException(Messages.BrandMessages.SAME_BRAND_NAME_EXISTS);
         }
     }
 }

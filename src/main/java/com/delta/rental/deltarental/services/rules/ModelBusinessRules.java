@@ -3,6 +3,7 @@ package com.delta.rental.deltarental.services.rules;
 import com.delta.rental.deltarental.entities.concretes.Model;
 import com.delta.rental.deltarental.repositories.ModelRepository;
 import com.delta.rental.deltarental.services.abstracts.BrandService;
+import com.delta.rental.deltarental.services.constants.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,10 @@ public class ModelBusinessRules {
     private final ModelRepository modelRepository;
     private final BrandService brandService;
 
-    //DB içerisinde aynı model id' ye sahip model olup olmama durumu kontrolü
+    //DB içerisinde  id' ye göre model olup olmama durumu kontrolü
     public Model checkByModelId(int id){
         if(!(modelRepository.existsById(id))){
-            throw new RuntimeException(id+" nolu id'ye sahip model bulunmamaktadır.");
+            throw new RuntimeException(id + Messages.ModelMessages.MODEL_NOT_FOUND);
         }
         return modelRepository.findById(id).orElseThrow();
     }
@@ -25,7 +26,7 @@ public class ModelBusinessRules {
     //DB içerisinde aynı model adına sahip modellerin var olup olmama kontrolü
     public void checkByModelName(String name){
         if(modelRepository.existsByName(name.trim().toUpperCase().replaceAll("\\s", ""))){
-            throw new RuntimeException("Bu model adı zaten var!!");
+            throw new RuntimeException(Messages.ModelMessages.SAME_MODEL_NAME_EXISTS);
         }
     }
 
@@ -44,7 +45,7 @@ public class ModelBusinessRules {
         //Eğer DB de girilen model ismine sahip başka bir model ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi model ismi dahil).
 
         if (!existingModel.getName().equals(newName) && modelRepository.existsByName(newName)) {
-            throw new RuntimeException("bu model ismi zaten var !!");
+            throw new RuntimeException(Messages.ModelMessages.SAME_MODEL_NAME_EXISTS);
         }
 
     }

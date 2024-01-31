@@ -4,6 +4,7 @@ import com.delta.rental.deltarental.entities.concretes.Car;
 import com.delta.rental.deltarental.repositories.CarRepository;
 import com.delta.rental.deltarental.services.abstracts.ColorService;
 import com.delta.rental.deltarental.services.abstracts.ModelService;
+import com.delta.rental.deltarental.services.constants.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,14 +31,14 @@ public class CarBusinessRules {
     public void checkByPlate(String plate){
         if(carRepository.existsByPlate(plate.trim().toUpperCase().replaceAll("\\s", "")))
         {
-            throw new RuntimeException("Aynı plakada başka bir araç eklenemez.");
+            throw new RuntimeException(Messages.CarMessages.SAME_PLATE_CAR_EXISTS);
         }
     }
 
     //DB içerisinde aynı Car id' ye sahip araç olup olmama durumu kontrolü
     public Car checkByCarId(int id){
         if(!(carRepository.existsById(id))){
-            throw new RuntimeException(id+" nolu id'ye sahip araç bulunmamaktadır.");
+            throw new RuntimeException(id + Messages.CarMessages.CAR_NOT_FOUND);
         }
         return carRepository.findById(id).orElseThrow();
     }
@@ -50,7 +51,7 @@ public class CarBusinessRules {
         //Eğer DB de girilen plakaya sahip başka bir plaka var ise bu hata oluşur.Ancak yok ise güncellenir(kendi plakasıda dahil).
 
         if (!existingCar.getPlate().equals(newPlate) && carRepository.existsByPlate(newPlate)) {
-            throw new RuntimeException("Bu plakaya sahip zaten bir araç var !!");
+            throw new RuntimeException(Messages.CarMessages.SAME_PLATE_CAR_EXISTS);
         }
 
     }

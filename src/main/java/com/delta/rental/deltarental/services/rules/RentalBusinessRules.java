@@ -5,6 +5,7 @@ import com.delta.rental.deltarental.repositories.RentalRepository;
 import com.delta.rental.deltarental.services.abstracts.CarService;
 import com.delta.rental.deltarental.services.abstracts.CustomerService;
 import com.delta.rental.deltarental.services.abstracts.EmployeeService;
+import com.delta.rental.deltarental.services.constants.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,10 @@ public class RentalBusinessRules {
     private final CustomerService customerService;
     private final EmployeeService employeeService;
 
-    //DB içerisinde aynı rental id' ye sahip rental olup olmama durumu kontrolü
+    //DB içerisinde rental id' ye göre rental olup olmama durumu kontrolü
     public Rental checkByRentalId(int id){
         if(!(rentalRepository.existsById(id))){
-            throw new RuntimeException(id+" nolu id'ye sahip rental bulunmamaktadır.");
+            throw new RuntimeException(id + Messages.RentalMessages.RENTAL_NOT_FOUND);
         }
         return rentalRepository.findById(id).orElseThrow();
     }
@@ -29,14 +30,14 @@ public class RentalBusinessRules {
     //Başlangıç tarihi bugünden daha geçmiş bir tarih olma durumu kontrolü
     public void checkByStartDateIsBeforeCurrentDate(LocalDate startDate){
         if(startDate.isBefore(LocalDate.now())){
-            throw new RuntimeException("başlangıç tarihi bugünden daha geçmiş bir tarih olamaz");
+            throw new RuntimeException(Messages.RentalMessages.RENTAL_START_DATE_NOT_LESS_THAN_NOW_DATE);
         }
     }
 
     //Bitiş tarihi başlangıç tarihinden daha geçmiş bir tarih olma durumu kontrolü
     public void checkByEndDateIsBeforeStartDate(LocalDate endDate, LocalDate startDate){
         if (endDate.isBefore(startDate)){
-            throw new RuntimeException("bitiş tarihi başlangıç tarihinden daha geçmiş bir tarih olamaz");
+            throw new RuntimeException(Messages.RentalMessages.RENTAL_END_DATE_NOT_LESS_THAN_START_DATE);
         }
     }
 
@@ -61,16 +62,16 @@ public class RentalBusinessRules {
     // Eğer kiralama süresi 25 günden fazlaysa veya 1 günden azsa hata fırlat
     public void checkRentalDays(long rentalDays){
         if (rentalDays > 25) {
-            throw new IllegalArgumentException("Bir araç maksimum 25 gün kiralanabilir.");
+            throw new IllegalArgumentException(Messages.RentalMessages.RENTAL_TIME_MAX_TWENTY_FIVE_DAYS);
         } else if (rentalDays < 1) {
-            throw new IllegalArgumentException("Bir araç minimum 1 gün kiralanabilir.");
+            throw new IllegalArgumentException(Messages.RentalMessages.RENTAL_TIME_MIN_ONE_DAY);
         }
     }
 
     //güncelleme yapılırken son kilometre, aracı teslim aldığı kilometreden daha az bir kilometrede olamaz.
     public void checkEndKilometerLessThanStartKilometer(Double startKilometer, Double endKilometer){
         if(startKilometer > endKilometer){
-            throw new RuntimeException("Aracın son kilometresi,teslim alınan kilometreden düşük olamaz");
+            throw new RuntimeException(Messages.RentalMessages.START_KILOMETER_NOT_LESS_THAN_END_KILOMETER);
         }
     }
 
