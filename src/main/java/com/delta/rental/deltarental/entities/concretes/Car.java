@@ -53,6 +53,9 @@ public class Car extends BaseEntity {
     @JoinColumn(name = "color_id")
     private Color color;
 
+    /*@Column(name="image_url")
+    private String imageUrl;*/
+
     @OneToMany(mappedBy = "car")
     @JsonIgnore
     private List<Rental> Rentals;

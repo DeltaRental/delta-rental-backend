@@ -4,6 +4,7 @@ import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.concretes.Car;
 import com.delta.rental.deltarental.repositories.CarRepository;
 import com.delta.rental.deltarental.services.abstracts.CarService;
+import com.delta.rental.deltarental.services.abstracts.ImageService;
 import com.delta.rental.deltarental.services.dtos.requests.car.AddCarRequest;
 import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
@@ -11,7 +12,9 @@ import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
 import com.delta.rental.deltarental.services.rules.CarBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +24,7 @@ public class CarManager implements CarService {
     private final CarRepository carRepository;
     private ModelMapperService modelMapperService;
     private CarBusinessRules carBusinessRules;
+    private ImageService imageService;
 
     @Override
     public GetCarResponse getById(int id) {
@@ -45,6 +49,7 @@ public class CarManager implements CarService {
         carBusinessRules.checkByModelId(addCarRequest.getModelId());
         carBusinessRules.checkByColorId(addCarRequest.getColorId());
         carBusinessRules.checkByPlate(addCarRequest.getPlate());
+
 
         //Model Mapper işlemi
         Car car = this.modelMapperService.forRequest()

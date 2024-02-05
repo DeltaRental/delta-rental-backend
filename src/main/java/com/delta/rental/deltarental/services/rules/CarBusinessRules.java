@@ -55,4 +55,13 @@ public class CarBusinessRules {
         }
 
     }
+
+    public String byPlate(String plate){
+        String licensePlate = plate.trim().toUpperCase().replaceAll("\s", "");
+        boolean exists = this.carRepository.existsByPlate(licensePlate);
+        if(exists){
+            throw new RuntimeException(plate + Messages.CarMessages.SAME_PLATE_CAR_EXISTS);
+        }
+        return licensePlate;
+    }
 }
