@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Service
 public class EmployeeManager implements EmployeeService {
-    private final EmployeeRepository employeeRepository;
-    private final ModelMapperService modelMapperService;
-    private final EmployeeBusinessRules employeeBusinessRules;
-    private final UserBusinessRules userBusinessRules;
+    private EmployeeRepository employeeRepository;
+    private ModelMapperService modelMapperService;
+    private EmployeeBusinessRules employeeBusinessRules;
+    private UserBusinessRules userBusinessRules;
 
     @Override
     public GetEmployeeResponse getById(int id) {

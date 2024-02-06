@@ -35,6 +35,7 @@ public class SecurityConfiguration {
                                 "/api/payments/**",
                                 "/api/branches/**",
                                 "/api/cars/**",
+                                "/api/employees/**",
                                 "/api/rentals/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui",
