@@ -16,5 +16,7 @@ public interface CarService {
     void update(UpdateCarRequest updateCarRequest);
     void delete(int id);
     void updateCarKilometerWithEndKilometer(int id,Double endKilometer);
+
+    void updateCarLocationWithReturnLocation(int id,String returnLocation);
     //List<GetCarListResponse> getAllByIsStatusTrue();
 }

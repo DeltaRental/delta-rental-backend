@@ -26,6 +26,8 @@ public class UpdateRentalRequest {
 
     private LocalDate returnDate;
 
+    private String returnLocation;
+
     //private double startKilometer;
 
     private double endKilometer;

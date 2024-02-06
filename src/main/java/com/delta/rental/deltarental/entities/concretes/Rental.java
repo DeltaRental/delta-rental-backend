@@ -39,6 +39,12 @@ public class Rental extends BaseEntity {
     @Column(name = "discount")
     private double discount;
 
+    @Column(name = "start_location")
+    private String startLocation;
+
+    @Column(name = "return_location")
+    private String returnLocation;
+
     @ManyToOne
     @JoinColumn(name = "car_id")
     private Car car;

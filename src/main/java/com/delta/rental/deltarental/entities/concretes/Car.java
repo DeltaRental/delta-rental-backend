@@ -32,6 +32,9 @@ public class Car extends BaseEntity {
     @Column(name = "plate")
     private String plate;
 
+    @Column(name="location")
+    private String location;
+
     @Column(name = "gear_type")
     @Enumerated(EnumType.STRING)
     private GearType gearType;

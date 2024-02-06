@@ -70,6 +70,9 @@ public class RentalManager implements RentalService {
         GetCarResponse carId = carService.getById(addRentalRequest.getCarId());
         rental.setStartKilometer(carId.getKilometer());
         rental.setEndKilometer(null);
+
+        rental.setStartLocation(carId.getLocation());
+        rental.setReturnLocation(null);
         //this.carService.update(this.modelMapperService.forRequest().map(carId,UpdateCarRequest.class));
         //UpdateCarRequest updateCarRequest = carId.setStatus(false);
         //carService.update(carId.setStatus());
@@ -104,9 +107,13 @@ public class RentalManager implements RentalService {
         //girilen car ıd nin verilerini set edebilmek için oluşturulan rental değişken
         GetCarResponse getCarResponse = carService.getById(updateRentalRequest.getCarId());
         rental.setStartKilometer(getCarResponse.getKilometer());
+        rental.setStartLocation(getCarResponse.getLocation());
 
         //Arabanın kilometresini endKilometer ile güncelleyen kod.
         carService.updateCarKilometerWithEndKilometer(updateRentalRequest.getCarId(), rental.getEndKilometer());
+
+        //Arabanın location'ını returnlocation ile güncelleyen kod.
+        carService.updateCarLocationWithReturnLocation(updateRentalRequest.getCarId(), rental.getReturnLocation());
 
         //kiralamayı gün sayısına bağlı olarak hesaplanması ve toplam fiyata eklenmesi
         double totalPrice = rentalBusinessRules.calculateTotalPrice(rentalDays,getCarResponse.getDailyPrice(), updateRentalRequest.getDiscount());

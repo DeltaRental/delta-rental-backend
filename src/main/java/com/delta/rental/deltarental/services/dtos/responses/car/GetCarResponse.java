@@ -27,6 +27,8 @@ public class GetCarResponse {
 
     private String colorName;
 
+    private String location;
+
     private CarState carState;
 
     private GearType gearType;

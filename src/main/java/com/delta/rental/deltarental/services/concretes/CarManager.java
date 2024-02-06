@@ -87,6 +87,14 @@ public class CarManager implements CarService {
         carRepository.save(car);
     }
 
+    @Override
+    public void updateCarLocationWithReturnLocation(int id, String returnLocation) {
+        Car car = carBusinessRules.checkByCarId(id);
+        car.setLocation(returnLocation);
+        carRepository.save(car);
+
+    }
+
 /*    @Override
     public List<GetCarListResponse> getAllByIsStatusTrue() {
         return carRepository.findAllByStatusTrue().stream()

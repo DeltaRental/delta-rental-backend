@@ -15,6 +15,8 @@ public class AddRentalRequest {
 
     private LocalDate endDate;
 
+    private String startLocation;
+
     //private LocalDate returnDate;
 
     //private double startKilometer;
