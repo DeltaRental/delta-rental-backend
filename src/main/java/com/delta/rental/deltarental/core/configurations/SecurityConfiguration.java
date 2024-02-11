@@ -32,6 +32,11 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/**",
+                                "/api/brands/**",
+                                "/api/models/**",
+                                "/api/colors/**",
+                                "/api/users/**",
+                                "/api/customers/**",
                                 "/api/payments/**",
                                 "/api/branches/**",
                                 "/api/cars/**",
