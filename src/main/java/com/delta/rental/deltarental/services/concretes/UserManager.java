@@ -4,12 +4,13 @@ import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.concretes.User;
 import com.delta.rental.deltarental.repositories.UserRepository;
 import com.delta.rental.deltarental.services.abstracts.UserService;
-import com.delta.rental.deltarental.services.dtos.requests.user.AddUserRequest;
 import com.delta.rental.deltarental.services.dtos.requests.user.UpdateUserRequest;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserResponse;
 import com.delta.rental.deltarental.services.rules.UserBusinessRules;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,15 @@ public class UserManager implements UserService {
     private final UserRepository userRepository;
     private final ModelMapperService modelMapperService;
     private final UserBusinessRules userBusinessRules;
+    private final PasswordEncoder passwordEncoder;
 
+
+    @Override
+    public UserDetails getByEmail(String email) {
+
+        userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Bilgiler hatalı."));
+        return null;
+    }
 
     @Override
     public GetUserResponse getById(int id) {
@@ -44,7 +53,7 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public void add(AddUserRequest addUserRequest) {
+    public void add(User addUserRequest) {
 
         User user = this.modelMapperService.forRequest()
                 .map(addUserRequest, User.class);
@@ -62,6 +71,8 @@ public class UserManager implements UserService {
 
         user.setGsm(user.getGsm().trim().replaceAll("\\s", ""));
         user.setEmail(user.getEmail().trim().toLowerCase());
+        //Şifreyi güncellerken passwordEncoder ile kripto olarak güncelleme işlemi
+        user.setPassword(passwordEncoder.encode(updateUserRequest.getPassword()));
 
         userRepository.save(user);
 

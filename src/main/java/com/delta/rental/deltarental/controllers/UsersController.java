@@ -40,7 +40,7 @@ public class UsersController {
 
     @PutMapping()
     public void update(@RequestBody UpdateUserRequest updateUserRequest){
-        authService.updateUserInformation(updateUserRequest);
+        userService.update(updateUserRequest);
     }
 
     @DeleteMapping("{id}")

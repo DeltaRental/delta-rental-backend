@@ -4,6 +4,7 @@ import com.delta.rental.deltarental.core.services.JwtService;
 import com.delta.rental.deltarental.entities.concretes.User;
 import com.delta.rental.deltarental.repositories.UserRepository;
 import com.delta.rental.deltarental.services.abstracts.AuthService;
+import com.delta.rental.deltarental.services.abstracts.UserService;
 import com.delta.rental.deltarental.services.dtos.requests.authentication.AddAuthenticationRequest;
 import com.delta.rental.deltarental.services.dtos.requests.user.AddUserRequest;
 import com.delta.rental.deltarental.services.dtos.requests.user.UpdateUserRequest;
@@ -18,24 +19,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthManager implements AuthService {
     private final UserRepository userRepository;
+    private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-
-    @Override
-    public GetAuthenticationResponse updateUserInformation(UpdateUserRequest request) {
-        var user = User.builder()
-                .name(request.getName())
-                .surname(request.getSurname())
-                .email(request.getEmail())
-                .gsm(request.getGsm())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .authorities(request.getRoles())
-                .build();
-        userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
-        return GetAuthenticationResponse.builder().token(jwtToken).build();
-    }
 
     @Override
     public GetAuthenticationResponse register(AddUserRequest request) {
@@ -47,7 +34,7 @@ public class AuthManager implements AuthService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .authorities(request.getRoles())
                 .build();
-        userRepository.save(user);
+        userService.add(user);
         var jwtToken = jwtService.generateToken(user);
         return GetAuthenticationResponse.builder().token(jwtToken).build();
     }
@@ -60,8 +47,7 @@ public class AuthManager implements AuthService {
                         request.getPassword()
                 )
         );
-        var user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("Bilgiler hatalı."));
+        var user = userService.getByEmail(request.getEmail());
         var jwtToken = jwtService.generateToken(user);
         return GetAuthenticationResponse.builder().token(jwtToken).build();
     }

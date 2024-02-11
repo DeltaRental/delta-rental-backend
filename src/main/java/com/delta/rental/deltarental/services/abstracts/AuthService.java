@@ -7,7 +7,7 @@ import com.delta.rental.deltarental.services.dtos.responses.authentication.GetAu
 
 public interface AuthService {
 
-    GetAuthenticationResponse updateUserInformation(UpdateUserRequest request);
+
     GetAuthenticationResponse register(AddUserRequest request);
     GetAuthenticationResponse authenticate(AddAuthenticationRequest request);
 }
