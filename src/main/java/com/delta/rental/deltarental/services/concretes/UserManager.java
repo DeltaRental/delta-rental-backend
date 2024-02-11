@@ -28,8 +28,8 @@ public class UserManager implements UserService {
     @Override
     public UserDetails getByEmail(String email) {
 
-        userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Bilgiler hatalı."));
-        return null;
+
+        return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Bilgiler hatalı."));
     }
 
     @Override
