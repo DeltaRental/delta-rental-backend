@@ -4,6 +4,7 @@ import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.concretes.Customer;
 import com.delta.rental.deltarental.repositories.CustomerRepository;
 import com.delta.rental.deltarental.services.abstracts.CustomerService;
+import com.delta.rental.deltarental.services.constants.Messages;
 import com.delta.rental.deltarental.services.dtos.requests.customer.AddCustomerRequest;
 import com.delta.rental.deltarental.services.dtos.requests.customer.UpdateCustomerRequest;
 import com.delta.rental.deltarental.services.dtos.responses.customer.GetCustomerListResponse;
@@ -51,7 +52,7 @@ public class CustomerManager implements CustomerService {
         Customer customer = this.modelMapperService.forRequest()
                 .map(addCustomerRequest, Customer.class);
 
-        customer.setNationalityId(customer.getNationalityId().trim().replaceAll("\\s", ""));
+        customer.setNationalityId(customer.getNationalityId().trim().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
 
         customerRepository.save(customer);
     }
@@ -65,7 +66,7 @@ public class CustomerManager implements CustomerService {
         Customer customer = this.modelMapperService.forRequest()
                 .map(updateCustomerRequest, Customer.class);
 
-        customer.setNationalityId(customer.getNationalityId().trim().replaceAll("\\s", ""));
+        customer.setNationalityId(customer.getNationalityId().trim().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
 
         customerRepository.save(customer);
     }

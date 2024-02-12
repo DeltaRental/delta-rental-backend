@@ -5,6 +5,7 @@ import com.delta.rental.deltarental.entities.concretes.Car;
 import com.delta.rental.deltarental.repositories.CarRepository;
 import com.delta.rental.deltarental.services.abstracts.CarService;
 import com.delta.rental.deltarental.services.abstracts.ImageService;
+import com.delta.rental.deltarental.services.constants.Messages;
 import com.delta.rental.deltarental.services.dtos.requests.car.AddCarRequest;
 import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
@@ -55,7 +56,7 @@ public class CarManager implements CarService {
         Car car = this.modelMapperService.forRequest()
                 .map(addCarRequest, Car.class);
 
-        car.setPlate(car.getPlate().trim().toUpperCase().replaceAll("\\s", ""));
+        car.setPlate(car.getPlate().trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
 
         carRepository.save(car);
     }

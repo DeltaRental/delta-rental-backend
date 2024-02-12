@@ -25,7 +25,7 @@ public class ModelBusinessRules {
 
     //DB içerisinde aynı model adına sahip modellerin var olup olmama kontrolü
     public void checkByModelName(String name){
-        if(modelRepository.existsByName(name.trim().toUpperCase().replaceAll("\\s", ""))){
+        if(modelRepository.existsByName(name.trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT))){
             throw new RuntimeException(Messages.ModelMessages.SAME_MODEL_NAME_EXISTS);
         }
     }
@@ -40,7 +40,7 @@ public class ModelBusinessRules {
     public void checkByModelNameWhenUpdate(int id, String name){
         Optional<Model> existingModelOptional = modelRepository.findById(id);
         Model existingModel = existingModelOptional.get();
-        String newName = name.trim().toUpperCase().replaceAll("\s", "");
+        String newName = name.trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT);
 
         //Eğer DB de girilen model ismine sahip başka bir model ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi model ismi dahil).
 

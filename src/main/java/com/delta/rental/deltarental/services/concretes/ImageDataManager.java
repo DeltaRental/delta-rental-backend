@@ -7,6 +7,7 @@ import com.delta.rental.deltarental.core.utilities.images.ImageUtils;
 import com.delta.rental.deltarental.entities.concretes.Image;
 import com.delta.rental.deltarental.repositories.ImageRepository;
 import com.delta.rental.deltarental.services.abstracts.ImageService;
+import com.delta.rental.deltarental.services.constants.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,19 +32,19 @@ public class ImageDataManager implements ImageService {
                 .imageData(ImageUtils.compressImage(file.getBytes())).build();
 
         Map<String, String> params = ObjectUtils.asMap(
-                "use_filename", file.getName(),
-                "unique_filename", true,
-                "overwrite", true
+                Messages.ImageMessages.USE_FILENAME, file.getName(),
+                Messages.ImageMessages.UNIQUE_FILENAME, true,
+                Messages.ImageMessages.OVERWRİTE, true
         );
 
         imageData.setImageUrl(cloudinary.uploader().upload(file.getBytes(), params)
-                .get("url")
+                .get(Messages.ImageMessages.URL)
                 .toString());
         dataRepository.save(imageData);
         if (imageData != null) {
-            return "file uploaded successfully : " + file.getOriginalFilename();
+            return Messages.ImageMessages.FILE_UPLOADED_SUCCESSFULLY + file.getOriginalFilename();
         }
-        return "file uploaded Fail ";
+        return Messages.ImageMessages.FILE_UPLOADED_FAIL;
 
     }
 

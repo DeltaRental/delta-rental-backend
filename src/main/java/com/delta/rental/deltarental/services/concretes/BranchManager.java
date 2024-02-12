@@ -4,6 +4,7 @@ import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.concretes.Branch;
 import com.delta.rental.deltarental.repositories.BranchRepository;
 import com.delta.rental.deltarental.services.abstracts.BranchService;
+import com.delta.rental.deltarental.services.constants.Messages;
 import com.delta.rental.deltarental.services.dtos.requests.branch.AddBranchRequest;
 import com.delta.rental.deltarental.services.dtos.requests.branch.UpdateBranchRequest;
 import com.delta.rental.deltarental.services.dtos.responses.branch.GetBranchListResponse;
@@ -45,7 +46,7 @@ public class BranchManager implements BranchService {
         Branch branch = this.modelMapperService.forRequest()
                 .map(addBranchRequest, Branch.class);
 
-        branch.setName(branch.getName().trim().toUpperCase().replaceAll("\\s", ""));
+        branch.setName(branch.getName().trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
 
         branchRepository.save(branch);
 
@@ -60,7 +61,7 @@ public class BranchManager implements BranchService {
         Branch branch = this.modelMapperService.forRequest()
                 .map(updateBranchRequest, Branch.class);
 
-        branch.setName(branch.getName().trim().toUpperCase().replaceAll("\\s", ""));
+        branch.setName(branch.getName().trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
 
         branchRepository.save(branch);
 

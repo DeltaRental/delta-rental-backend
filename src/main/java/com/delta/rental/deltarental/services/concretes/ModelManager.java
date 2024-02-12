@@ -4,6 +4,7 @@ import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.concretes.Model;
 import com.delta.rental.deltarental.repositories.ModelRepository;
 import com.delta.rental.deltarental.services.abstracts.ModelService;
+import com.delta.rental.deltarental.services.constants.Messages;
 import com.delta.rental.deltarental.services.dtos.requests.model.AddModelRequest;
 import com.delta.rental.deltarental.services.dtos.requests.model.UpdateModelRequest;
 import com.delta.rental.deltarental.services.dtos.responses.model.GetModelListResponse;
@@ -47,7 +48,7 @@ public class ModelManager implements ModelService {
         Model model = this.modelMapperService.forRequest()
                 .map(addModelRequest, Model.class);
 
-        model.setName(model.getName().trim().toUpperCase().replaceAll("\\s", ""));
+        model.setName(model.getName().trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
 
         modelRepository.save(model);
 
@@ -63,7 +64,7 @@ public class ModelManager implements ModelService {
         Model model = this.modelMapperService.forRequest()
                 .map(updateModelRequest, Model.class);
 
-        model.setName(model.getName().trim().toUpperCase().replaceAll("\\s", ""));
+        model.setName(model.getName().trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
 
         modelRepository.save(model);
 

@@ -4,6 +4,7 @@ import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.concretes.Brand;
 import com.delta.rental.deltarental.repositories.BrandRepository;
 import com.delta.rental.deltarental.services.abstracts.BrandService;
+import com.delta.rental.deltarental.services.constants.Messages;
 import com.delta.rental.deltarental.services.dtos.requests.brand.AddBrandRequest;
 import com.delta.rental.deltarental.services.dtos.requests.brand.UpdateBrandRequest;
 import com.delta.rental.deltarental.services.dtos.responses.brand.GetBrandListResponse;
@@ -48,7 +49,7 @@ public class BrandManager implements BrandService {
         Brand brand = this.modelMapperService.forRequest()
                 .map(addBrandRequest, Brand.class);
 
-        brand.setName(brand.getName().trim().toUpperCase().replaceAll("\\s", ""));
+        brand.setName(brand.getName().trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
 
         brandRepository.save(brand);
 
@@ -63,7 +64,7 @@ public class BrandManager implements BrandService {
         Brand brand = this.modelMapperService.forRequest()
                 .map(updateBrandRequest, Brand.class);
 
-        brand.setName(brand.getName().trim().toUpperCase().replaceAll("\\s", ""));
+        brand.setName(brand.getName().trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
 
         brandRepository.save(brand);
 

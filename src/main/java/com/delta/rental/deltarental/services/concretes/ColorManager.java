@@ -4,6 +4,7 @@ import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.concretes.Color;
 import com.delta.rental.deltarental.repositories.ColorRepository;
 import com.delta.rental.deltarental.services.abstracts.ColorService;
+import com.delta.rental.deltarental.services.constants.Messages;
 import com.delta.rental.deltarental.services.dtos.requests.color.AddColorRequest;
 import com.delta.rental.deltarental.services.dtos.requests.color.UpdateColorRequest;
 import com.delta.rental.deltarental.services.dtos.responses.color.GetColorListResponse;
@@ -46,7 +47,7 @@ public class ColorManager implements ColorService {
         Color color = this.modelMapperService.forRequest()
                 .map(addColorRequest, Color.class);
 
-        color.setName(color.getName().trim().toUpperCase().replaceAll("\\s", ""));
+        color.setName(color.getName().trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
 
         colorRepository.save(color);
 
@@ -61,7 +62,7 @@ public class ColorManager implements ColorService {
         Color color = this.modelMapperService.forRequest()
                 .map(updateColorRequest, Color.class);
 
-        color.setName(color.getName().trim().toUpperCase().replaceAll("\\s", ""));
+        color.setName(color.getName().trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
 
         colorRepository.save(color);
 

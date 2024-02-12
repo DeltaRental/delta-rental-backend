@@ -23,7 +23,7 @@ public class BrandBusinessRules {
 
     //DB içerisinde aynı marka adına sahip markaların var olup olmama kontrolü
     public void checkByBrandName(String name){
-        if(brandRepository.existsByName(name.trim().toUpperCase().replaceAll("\\s", ""))){
+        if(brandRepository.existsByName(name.trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT))){
             throw new RuntimeException(Messages.BrandMessages.SAME_BRAND_NAME_EXISTS);
         }
     }
@@ -32,7 +32,7 @@ public class BrandBusinessRules {
     public void checkByBrandNameWhenUpdate(int id,String name){
         Optional<Brand> existingBrandOptional = brandRepository.findById(id);
         Brand existingBrand = existingBrandOptional.get();
-        String newName = name.trim().toUpperCase().replaceAll("\s", "");
+        String newName = name.trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT);
 
         //Eğer DB de girilen markaya sahip başka bir marka ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi marka ismi dahil).
         if (!existingBrand.getName().equals(newName) && brandRepository.existsByName(newName)) {

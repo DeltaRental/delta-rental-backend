@@ -2,6 +2,12 @@ package com.delta.rental.deltarental.services.constants;
 
 public class Messages {
 
+    public class GeneralMessages{
+        public static final String WRONG_INFORMATION = "Bilgiler hatalı!";
+        public static final String REPLACE_ALL_REGEX = "\\s";
+        public static final String REPLACE_ALL_REPLACEMENT = "";
+    }
+
     public class IdMessages{
         public static final String ID_NOT_NULL = "Id boş geçilemez";
         public static final String ID_NOT_NEGATIVE = "Id 0'dan küçük olamaz";
@@ -89,5 +95,14 @@ public class Messages {
         public static final String PHONE_NUMBER_NOT_START_ZERO = "Telefon numarasını başında sıfır olmadan giriniz!.";
         public static final String ENTER_VALID_EMAIL = "Geçerli bir e-posta adresi giriniz .";
         public static final String USER_NOT_FOUND = " nolu id'ye sahip user bulunmamaktadır.";
+    }
+    public class ImageMessages{
+        public static final String USE_FILENAME = "use_filename";
+        public static final String UNIQUE_FILENAME = "unique_filename";
+        public static final String OVERWRİTE = "overwrite";
+        public static final String URL = "url";
+        public static final String FILE_UPLOADED_SUCCESSFULLY = "file uploaded successfully : ";
+        public static final String FILE_UPLOADED_FAIL = "file uploaded Fail ";
+
     }
 }

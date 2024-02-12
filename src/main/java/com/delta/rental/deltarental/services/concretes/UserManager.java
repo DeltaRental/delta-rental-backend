@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.delta.rental.deltarental.services.constants.Messages;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +30,7 @@ public class UserManager implements UserService {
     public UserDetails getByEmail(String email) {
 
 
-        return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Bilgiler hatalı."));
+        return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException(Messages.GeneralMessages.WRONG_INFORMATION));
     }
 
     @Override
@@ -58,7 +59,7 @@ public class UserManager implements UserService {
         User user = this.modelMapperService.forRequest()
                 .map(addUserRequest, User.class);
 
-        user.setGsm(user.getGsm().trim().replaceAll("\\s", ""));
+        user.setGsm(user.getGsm().trim().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
         user.setEmail(user.getEmail().trim().toLowerCase());
 
         userRepository.save(user);
@@ -69,7 +70,7 @@ public class UserManager implements UserService {
         User user = this.modelMapperService.forRequest()
                 .map(updateUserRequest, User.class);
 
-        user.setGsm(user.getGsm().trim().replaceAll("\\s", ""));
+        user.setGsm(user.getGsm().trim().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
         user.setEmail(user.getEmail().trim().toLowerCase());
         //Şifreyi güncellerken passwordEncoder ile kripto olarak güncelleme işlemi
         user.setPassword(passwordEncoder.encode(updateUserRequest.getPassword()));

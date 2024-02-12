@@ -25,7 +25,7 @@ public class BranchBusinessRules {
 
     //DB içerisinde aynı şube adına sahip şubelerin var olup olmama kontrolü
     public void checkByBranchName(String name){
-        if(branchRepository.existsByName(name.trim().toUpperCase().replaceAll("\\s", ""))){
+        if(branchRepository.existsByName(name.trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT))){
             throw new RuntimeException(Messages.BranchMessages.SAME_BRANCH_NAME_EXISTS);
         }
     }
@@ -34,7 +34,7 @@ public class BranchBusinessRules {
     public void checkByBranchNameWhenUpdate(int id,String name){
         Optional<Branch> existingBranchOptional = branchRepository.findById(id);
         Branch existingBranch = existingBranchOptional.get();
-        String newName = name.trim().toUpperCase().replaceAll("\s", "");
+        String newName = name.trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT);
 
 
         //Eğer DB de girilen şubeye sahip başka bir şube ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi şube ismi dahil).
