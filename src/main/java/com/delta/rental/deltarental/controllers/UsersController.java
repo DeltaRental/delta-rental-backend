@@ -15,6 +15,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,6 +47,11 @@ public class UsersController {
     @DeleteMapping("{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
+    }
+
+    @GetMapping("/getUserInfo")
+    public UserDetails getByEmail(String email){
+        return userService.getByEmail(email);
     }
 }
 
