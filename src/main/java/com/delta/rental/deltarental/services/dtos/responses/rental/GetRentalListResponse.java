@@ -34,6 +34,8 @@ public class GetRentalListResponse {
 
     private double discount;
 
+    private String startLocation;
+
     private GetCarListResponse car;
 
     private GetCustomerListResponse customer;

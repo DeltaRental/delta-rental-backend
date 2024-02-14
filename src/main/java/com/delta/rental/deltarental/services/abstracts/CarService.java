@@ -1,6 +1,7 @@
 package com.delta.rental.deltarental.services.abstracts;
 
 import com.delta.rental.deltarental.services.dtos.requests.car.AddCarRequest;
+import com.delta.rental.deltarental.services.dtos.requests.car.CarFilterDto;
 import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
@@ -16,7 +17,7 @@ public interface CarService {
     void update(UpdateCarRequest updateCarRequest);
     void delete(int id);
     void updateCarKilometerWithEndKilometer(int id,Double endKilometer);
-
     void updateCarLocationWithReturnLocation(int id,String returnLocation);
+    List<GetCarListResponse> filterCars(CarFilterDto carFilterDto);
     //List<GetCarListResponse> getAllByIsStatusTrue();
 }

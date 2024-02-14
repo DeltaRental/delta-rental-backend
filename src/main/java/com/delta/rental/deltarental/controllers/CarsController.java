@@ -2,6 +2,7 @@ package com.delta.rental.deltarental.controllers;
 
 import com.delta.rental.deltarental.services.abstracts.CarService;
 import com.delta.rental.deltarental.services.dtos.requests.car.AddCarRequest;
+import com.delta.rental.deltarental.services.dtos.requests.car.CarFilterDto;
 import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
@@ -46,8 +47,10 @@ public class CarsController {
         carService.delete(id);
     }
 
-    //@GetMapping("/getCarAvailability")
-    //public List<GetCarListResponse> getCarAvailability(){
-    //    return carService.getAllByIsStatusTrue();
-    //}
+    @GetMapping("/filter")
+    public List<GetCarListResponse> filterCars( CarFilterDto carFilterDto) {
+        return carService.filterCars(carFilterDto);
+    }
+
+
 }

@@ -2,11 +2,14 @@ package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.concretes.Car;
+import com.delta.rental.deltarental.entities.concretes.Rental;
 import com.delta.rental.deltarental.repositories.CarRepository;
+import com.delta.rental.deltarental.services.abstracts.BranchService;
 import com.delta.rental.deltarental.services.abstracts.CarService;
 import com.delta.rental.deltarental.services.abstracts.ImageService;
 import com.delta.rental.deltarental.services.constants.Messages;
 import com.delta.rental.deltarental.services.dtos.requests.car.AddCarRequest;
+import com.delta.rental.deltarental.services.dtos.requests.car.CarFilterDto;
 import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
@@ -26,6 +29,7 @@ public class CarManager implements CarService {
     private ModelMapperService modelMapperService;
     private CarBusinessRules carBusinessRules;
     private ImageService imageService;
+    private BranchService branchService;
 
     @Override
     public GetCarResponse getById(int id) {
@@ -57,7 +61,6 @@ public class CarManager implements CarService {
                 .map(addCarRequest, Car.class);
 
         car.setPlate(car.getPlate().trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT));
-
         carRepository.save(car);
     }
 
@@ -95,6 +98,16 @@ public class CarManager implements CarService {
         carRepository.save(car);
 
     }
+
+
+    public List<GetCarListResponse> filterCars(CarFilterDto carFilterDto) {
+        List<Car> cars = carRepository.filterCars(carFilterDto.getStartLocation(), carFilterDto.getEndDate(), carFilterDto.getStartDate());
+        List<GetCarListResponse> availableCars = cars.stream()
+                .map(car ->this.modelMapperService.forResponse()
+                        .map(car, GetCarListResponse.class)).collect(Collectors.toList());
+        return availableCars;
+    }
+
 
 /*    @Override
     public List<GetCarListResponse> getAllByIsStatusTrue() {

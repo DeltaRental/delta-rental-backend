@@ -30,6 +30,8 @@ public class GetRentalResponse {
 
     private double discount;
 
+    private String startLocation;
+
     private GetCarListResponse car;
 
     private GetCustomerListResponse customer;

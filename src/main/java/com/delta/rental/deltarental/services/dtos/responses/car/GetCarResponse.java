@@ -3,6 +3,7 @@ package com.delta.rental.deltarental.services.dtos.responses.car;
 import com.delta.rental.deltarental.enums.CarState;
 import com.delta.rental.deltarental.enums.FuelType;
 import com.delta.rental.deltarental.enums.GearType;
+import com.delta.rental.deltarental.services.dtos.responses.branch.GetBranchResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,4 +35,6 @@ public class GetCarResponse {
     private GearType gearType;
 
     private FuelType fuelType;
+
+    private GetBranchResponse branch;
 }
