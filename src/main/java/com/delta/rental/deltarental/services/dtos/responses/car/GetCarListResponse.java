@@ -5,6 +5,8 @@ import com.delta.rental.deltarental.enums.FuelType;
 import com.delta.rental.deltarental.enums.GearType;
 import com.delta.rental.deltarental.services.dtos.responses.branch.GetBranchListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.branch.GetBranchResponse;
+import com.delta.rental.deltarental.services.dtos.responses.color.GetColorResponse;
+import com.delta.rental.deltarental.services.dtos.responses.model.GetModelResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,9 +25,9 @@ public class GetCarListResponse {
 
     private String plate;
 
-    private String modelName;
+    private GetModelResponse model;
 
-    private String colorName;
+    private GetColorResponse color;
 
     private String location;
 
