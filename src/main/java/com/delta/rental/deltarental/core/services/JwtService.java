@@ -1,12 +1,12 @@
 package com.delta.rental.deltarental.core.services;
 
+import com.delta.rental.deltarental.entities.concretes.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -35,14 +35,26 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+//    public String generateToken(UserDetails userDetails) {
+//        return generateToken(new HashMap<>(), userDetails);
+//    }
+
+    public String generateToken(User user) {
+        Map<String, Object> customClaims = new HashMap<>(Map.of(
+                "id", user.getId(),
+                "email", user.getEmail(),
+                "firstname", user.getName(),
+                "lastname", user.getSurname(),
+                "gsm", user.getGsm(),
+                "role", user.getAuthorities()
+        ));
+        return generateToken(customClaims, user);
     }
 
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){
+    public String generateToken(Map<String, Object> customClaims, UserDetails userDetails){
         return Jwts
                 .builder()
-                .setClaims(extraClaims)
+                .setClaims(customClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))

@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface UserService {
 
-    UserDetails getByEmail(String email);
+    User getByEmail(String email);
     GetUserResponse getById(int id);
     List<GetUserListResponse> getAll();
     void add(User addUserRequest);

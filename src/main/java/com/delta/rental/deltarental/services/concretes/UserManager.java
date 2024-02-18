@@ -27,7 +27,7 @@ public class UserManager implements UserService {
 
 
     @Override
-    public UserDetails getByEmail(String email) {
+    public User getByEmail(String email) {
 
 
         return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException(Messages.GeneralMessages.WRONG_INFORMATION));

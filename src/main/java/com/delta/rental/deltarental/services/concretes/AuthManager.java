@@ -41,14 +41,15 @@ public class AuthManager implements AuthService {
 
     @Override
     public GetAuthenticationResponse authenticate(AddAuthenticationRequest request) {
+        User userEntity = userService.getByEmail(request.getEmail());
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword()
                 )
         );
-        var user = userService.getByEmail(request.getEmail());
-        var jwtToken = jwtService.generateToken(user);
+        //var user = userService.getByEmail(request.getEmail());
+        var jwtToken = jwtService.generateToken(userEntity);
         return GetAuthenticationResponse.builder().token(jwtToken).build();
     }
 
