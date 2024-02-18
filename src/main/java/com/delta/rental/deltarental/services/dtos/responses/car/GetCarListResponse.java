@@ -25,6 +25,8 @@ public class GetCarListResponse {
 
     private String plate;
 
+    private String imageUrl;
+
     private GetModelResponse model;
 
     private GetColorResponse color;

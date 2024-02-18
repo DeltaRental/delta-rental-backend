@@ -97,9 +97,10 @@ public class Messages {
         public static final String USER_NOT_FOUND = " nolu id'ye sahip user bulunmamaktadır.";
     }
     public class ImageMessages{
+        public static final String BASE_PUBLIC_ID = "image/upload/";
         public static final String USE_FILENAME = "use_filename";
         public static final String UNIQUE_FILENAME = "unique_filename";
-        public static final String OVERWRİTE = "overwrite";
+        public static final String OVERWRITE = "overwrite";
         public static final String URL = "url";
         public static final String FILE_UPLOADED_SUCCESSFULLY = "file uploaded successfully : ";
         public static final String FILE_UPLOADED_FAIL = "file uploaded Fail ";

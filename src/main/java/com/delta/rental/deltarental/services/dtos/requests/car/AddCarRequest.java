@@ -44,6 +44,8 @@ public class AddCarRequest {
 
     private FuelType fuelType;
 
+    private String imageUrl;
+
 
 
 

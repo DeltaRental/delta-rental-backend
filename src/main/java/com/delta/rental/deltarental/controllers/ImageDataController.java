@@ -19,9 +19,10 @@ public class ImageDataController {
 
     @PostMapping(value = "/upload" , consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @ResponseStatus(HttpStatus.OK)
-    public String uploadImage(@RequestPart("image") MultipartFile file) throws IOException {
+    public String uploadImage(@RequestPart("image") MultipartFile file,
+                              @RequestParam("plate")String plate) throws IOException {
 
-        return dataService.uploadImage(file);
+        return dataService.uploadImage(file,plate);
 
     }
 

@@ -24,6 +24,8 @@ public class GetCarResponse {
 
     private String plate;
 
+    private String imageUrl;
+
     private String modelName;
 
     private String colorName;

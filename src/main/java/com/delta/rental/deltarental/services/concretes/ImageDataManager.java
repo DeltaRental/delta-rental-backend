@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.delta.rental.deltarental.services.constants.Messages.ImageMessages.BASE_PUBLIC_ID;
+
 @Service
 @AllArgsConstructor
 public class ImageDataManager implements ImageService {
@@ -25,16 +27,19 @@ public class ImageDataManager implements ImageService {
     private final Cloudinary cloudinary;
 
     @Override
-    public String uploadImage(MultipartFile file) throws IOException {
+    public String uploadImage(MultipartFile file,String plate) throws IOException {
+        String publicId = Messages.ImageMessages.BASE_PUBLIC_ID + plate;
         Image imageData = Image.builder()
-                .name(file.getOriginalFilename())
+                .name(plate)
                 .type(file.getContentType())
                 .imageData(ImageUtils.compressImage(file.getBytes())).build();
 
         Map<String, String> params = ObjectUtils.asMap(
                 Messages.ImageMessages.USE_FILENAME, file.getName(),
                 Messages.ImageMessages.UNIQUE_FILENAME, true,
-                Messages.ImageMessages.OVERWRİTE, true
+                Messages.ImageMessages.OVERWRITE, true,
+                Messages.ImageMessages.BASE_PUBLIC_ID,
+                publicId
         );
 
         imageData.setImageUrl(cloudinary.uploader().upload(file.getBytes(), params)
@@ -42,7 +47,8 @@ public class ImageDataManager implements ImageService {
                 .toString());
         dataRepository.save(imageData);
         if (imageData != null) {
-            return Messages.ImageMessages.FILE_UPLOADED_SUCCESSFULLY + file.getOriginalFilename();
+
+            return imageData.getImageUrl();
         }
         return Messages.ImageMessages.FILE_UPLOADED_FAIL;
 
