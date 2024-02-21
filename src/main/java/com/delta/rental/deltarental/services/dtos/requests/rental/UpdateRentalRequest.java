@@ -34,9 +34,12 @@ public class UpdateRentalRequest {
 
     private double discount;
 
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int carId;
 
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int customerId;
 
+    @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int employeeId;
 }

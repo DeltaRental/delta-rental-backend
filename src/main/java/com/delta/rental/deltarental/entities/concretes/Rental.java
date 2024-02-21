@@ -4,12 +4,14 @@ import com.delta.rental.deltarental.entities.abstracts.BaseEntity;
 import com.delta.rental.deltarental.entities.concretes.Car;
 import com.delta.rental.deltarental.entities.concretes.Customer;
 import com.delta.rental.deltarental.entities.concretes.Employee;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "rentals")
@@ -56,6 +58,10 @@ public class Rental extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+
+    @OneToMany(mappedBy = "rental")
+    @JsonIgnore
+    private List<Invoice> Invoices;
 
 
 }
