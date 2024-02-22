@@ -32,7 +32,7 @@ public class AuthManager implements AuthService {
                 .email(request.getEmail())
                 .gsm(request.getGsm())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .authorities(request.getRoles())
+                .authorities(request.getAuthorities())
                 .build();
         userService.add(user);
         var jwtToken = jwtService.generateToken(user);

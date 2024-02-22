@@ -36,5 +36,5 @@ public class UpdateUserRequest {
     //@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$",message = "Parola en az 8 karakter uzunluğunda olmalı, en az bir harf, bir rakam ve bir özel karakter içermelidir.")
     private String password;
 
-    private List<UserRole> roles;
+    private List<UserRole> authorities;
 }
