@@ -19,7 +19,7 @@ public class Invoice extends BaseEntity {
     private LocalDate date;
 
     @Column(name = "amount")
-    private int amount;
+    private double amount;
 
     @Column(name = "address")
     private String address;

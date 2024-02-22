@@ -15,10 +15,10 @@ import java.time.LocalDate;
 public class AddInvoiceRequest {
 
 
-    private LocalDate date;
+    //private LocalDate date;
 
     @Positive(message = Messages.InvoiceMessages.INVOICE_AMOUNT_NOT_NEGATIVE)
-    private int amount;
+    private double amount;
 
     private String address;
 

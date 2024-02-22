@@ -23,7 +23,7 @@ public class InvoicesController {
     public GetInvoiceResponse getById(int id){
         return invoiceService.getById(id);
     }
-    @GetMapping()
+    @GetMapping("/getAll")
     public List<GetInvoiceListResponse> getAll(){
         return invoiceService.getAll();
     }

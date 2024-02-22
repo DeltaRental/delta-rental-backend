@@ -110,5 +110,6 @@ public class Messages {
     public class InvoiceMessages{
         public static final String INVOICE_NOT_FOUND = " nolu id'ye sahip fatura bulunmamaktadır.";
         public static final String INVOICE_AMOUNT_NOT_NEGATIVE = "Fatura tutarı 0'dan küçük olamaz.";
+        public static final String INVOICE_DATE_NOT_LESS_THAN_NOW_DATE = "fatura tarihi bugünden daha geçmiş bir tarih olamaz";
     }
 }

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class GetInvoiceResponse {
     private LocalDate date;
-    private int amount;
+    private double amount;
     private String address;
     private String name;
     private int rentalId;

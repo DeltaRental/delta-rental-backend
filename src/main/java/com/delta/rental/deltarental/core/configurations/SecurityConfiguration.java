@@ -33,6 +33,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/**",
                                 "/api/brands/**",
+                                "/api/invoices/**",
                                 "/api/models/**",
                                 "/api/colors/**",
                                 "/api/users/**",
