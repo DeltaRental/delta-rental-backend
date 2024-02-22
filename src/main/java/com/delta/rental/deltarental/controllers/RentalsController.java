@@ -2,9 +2,11 @@ package com.delta.rental.deltarental.controllers;
 
 import com.delta.rental.deltarental.services.abstracts.RentalService;
 import com.delta.rental.deltarental.services.dtos.requests.brand.AddBrandRequest;
+import com.delta.rental.deltarental.services.dtos.requests.car.CarFilterDto;
 import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
 import com.delta.rental.deltarental.services.dtos.requests.rental.AddRentalRequest;
 import com.delta.rental.deltarental.services.dtos.requests.rental.UpdateRentalRequest;
+import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.model.GetModelListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.model.GetModelResponse;
 import com.delta.rental.deltarental.services.dtos.responses.rental.GetRentalListResponse;
@@ -45,6 +47,11 @@ public class RentalsController {
     @DeleteMapping("{id}")
     public void delete(@PathVariable int id){
         rentalService.delete(id);
+    }
+
+    @GetMapping("/getRentalByUser")
+    public List<GetRentalListResponse> getRentalByUser(int id) {
+        return rentalService.filterRentalByUsers(id);
     }
 }
 

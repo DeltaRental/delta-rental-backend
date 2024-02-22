@@ -1,6 +1,7 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
+import com.delta.rental.deltarental.entities.concretes.Car;
 import com.delta.rental.deltarental.entities.concretes.Rental;
 import com.delta.rental.deltarental.repositories.RentalRepository;
 import com.delta.rental.deltarental.services.abstracts.CarService;
@@ -9,6 +10,7 @@ import com.delta.rental.deltarental.services.abstracts.EmployeeService;
 import com.delta.rental.deltarental.services.abstracts.RentalService;
 import com.delta.rental.deltarental.services.dtos.requests.rental.AddRentalRequest;
 import com.delta.rental.deltarental.services.dtos.requests.rental.UpdateRentalRequest;
+import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
 import com.delta.rental.deltarental.services.dtos.responses.rental.GetRentalListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.rental.GetRentalResponse;
@@ -129,6 +131,17 @@ public class RentalManager implements RentalService {
         rentalBusinessRules.checkByRentalId(id);
         rentalRepository.deleteById(id);
     }
+
+    @Override
+    public List<GetRentalListResponse> filterRentalByUsers(int id) {
+        List<Rental> rentals = rentalRepository.filterRentalByUsers(id);
+        List<GetRentalListResponse> showRental = rentals.stream()
+                .map(rental ->this.modelMapperService.forResponse()
+                        .map(rental, GetRentalListResponse.class)).collect(Collectors.toList());
+        return showRental;
+        //return rentalRepository.filterRentalByUsers(id);
+    }
+
     //   @Override
 /*    public void carReturn(int carId,UpdateRentalRequest updateRentalRequest,AddRentalRequest addRentalRequest) {
         GetCarResponse carResponse = carService.getById(carId);
