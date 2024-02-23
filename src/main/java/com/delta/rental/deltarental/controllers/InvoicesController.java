@@ -50,7 +50,7 @@ public class InvoicesController {
     }
 
     @GetMapping("/getInvoiceDetails")
-    public List<GetInvoiceListResponse> getInvoiceDetails(String plate){
-        return invoiceService.getInvoiceDetails(plate);
+    public List<GetInvoiceListResponse> getInvoiceDetails(int id){
+        return invoiceService.getInvoiceDetails(id);
     }
 }

@@ -13,7 +13,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice,Integer> {
     @Query(nativeQuery = true,value = "select i.* from invoices i inner join rentals r on i.rental_id = r.id  inner join customers cus on cus.id = r.customer_id where cus.user_id = ?1")
     List<Invoice> findAllInvoiceDetails(int id);
 
-    @Query(nativeQuery = true,value = "select i.* from invoices i inner join rentals r on i.rental_id = r.id inner join cars car on car.id= r.car_id where car.plate = ?1")
-    List<Invoice> findInvoiceDetails(String plate);
+    @Query(nativeQuery = true,value = "select * from invoices i where i.rental_id = ?1")
+    List<Invoice> findInvoiceDetails(int id);
 
 }

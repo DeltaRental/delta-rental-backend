@@ -94,8 +94,8 @@ public class InvoiceManager implements InvoiceService {
     }
 
     @Override
-    public List<GetInvoiceListResponse> getInvoiceDetails(String plate) {
-        List<Invoice> invoices = invoiceRepository.findInvoiceDetails(plate);
+    public List<GetInvoiceListResponse> getInvoiceDetails(int id) {
+        List<Invoice> invoices = invoiceRepository.findInvoiceDetails(id);
         List<GetInvoiceListResponse> showInvoice = invoices.stream()
                 .map(invoice ->this.modelMapperService.forResponse()
                         .map(invoice, GetInvoiceListResponse.class)).collect(Collectors.toList());

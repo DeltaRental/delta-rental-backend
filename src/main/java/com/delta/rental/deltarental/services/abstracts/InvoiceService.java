@@ -25,5 +25,5 @@ public interface InvoiceService {
 
     List<GetInvoiceListResponse> getAllInvoiceDetails(int id);
 
-    List<GetInvoiceListResponse> getInvoiceDetails(String plate);
+    List<GetInvoiceListResponse> getInvoiceDetails(int id);
 }
