@@ -11,6 +11,7 @@ import com.delta.rental.deltarental.services.dtos.responses.model.GetModelRespon
 import com.delta.rental.deltarental.services.dtos.responses.rental.GetRentalListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.rental.GetRentalResponse;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface RentalService {
@@ -24,6 +25,8 @@ public interface RentalService {
 
 
     List<GetRentalListResponse> filterRentalByUsers(int id);
+
+    //void matchByRentalDateToInvoiceDate(int id, LocalDate date);
 
 
 }

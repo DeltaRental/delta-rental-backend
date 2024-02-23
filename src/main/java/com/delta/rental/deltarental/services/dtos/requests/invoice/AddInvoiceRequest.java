@@ -15,14 +15,6 @@ import java.time.LocalDate;
 public class AddInvoiceRequest {
 
 
-    //private LocalDate date;
-
-    @Positive(message = Messages.InvoiceMessages.INVOICE_AMOUNT_NOT_NEGATIVE)
-    private double amount;
-
-    private String address;
-
-    private String name;
 
     @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int rentalId;

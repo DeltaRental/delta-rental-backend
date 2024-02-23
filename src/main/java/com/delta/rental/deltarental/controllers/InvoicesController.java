@@ -1,6 +1,7 @@
 package com.delta.rental.deltarental.controllers;
 
 
+import com.delta.rental.deltarental.repositories.InvoiceRepository;
 import com.delta.rental.deltarental.services.abstracts.InvoiceService;
 import com.delta.rental.deltarental.services.dtos.requests.invoice.AddInvoiceRequest;
 import com.delta.rental.deltarental.services.dtos.requests.invoice.UpdateInvoiceRequest;
@@ -41,5 +42,15 @@ public class InvoicesController {
     @DeleteMapping("{id}")
     public void delete(@PathVariable int id){
         invoiceService.delete(id);
+    }
+
+    @GetMapping("/getAllInvoiceDetails")
+    public List<GetInvoiceListResponse> getAllInvoiceDetails(int id){
+        return invoiceService.getAllInvoiceDetails(id);
+    }
+
+    @GetMapping("/getInvoiceDetails")
+    public List<GetInvoiceListResponse> getInvoiceDetails(String plate){
+        return invoiceService.getInvoiceDetails(plate);
     }
 }

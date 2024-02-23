@@ -1,11 +1,13 @@
 package com.delta.rental.deltarental.services.abstracts;
 
 
+import com.delta.rental.deltarental.entities.concretes.Invoice;
 import com.delta.rental.deltarental.services.dtos.requests.invoice.AddInvoiceRequest;
 import com.delta.rental.deltarental.services.dtos.requests.invoice.UpdateInvoiceRequest;
 import com.delta.rental.deltarental.services.dtos.responses.invoice.GetInvoiceListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.invoice.GetInvoiceResponse;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface InvoiceService {
@@ -19,4 +21,9 @@ public interface InvoiceService {
     void update(UpdateInvoiceRequest updateInvoiceRequest);
 
     void delete(int id);
+
+
+    List<GetInvoiceListResponse> getAllInvoiceDetails(int id);
+
+    List<GetInvoiceListResponse> getInvoiceDetails(String plate);
 }

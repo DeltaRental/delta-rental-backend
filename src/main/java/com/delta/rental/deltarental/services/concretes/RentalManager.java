@@ -1,16 +1,13 @@
 package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
-import com.delta.rental.deltarental.entities.concretes.Car;
 import com.delta.rental.deltarental.entities.concretes.Rental;
 import com.delta.rental.deltarental.repositories.RentalRepository;
 import com.delta.rental.deltarental.services.abstracts.CarService;
-import com.delta.rental.deltarental.services.abstracts.CustomerService;
-import com.delta.rental.deltarental.services.abstracts.EmployeeService;
+import com.delta.rental.deltarental.services.abstracts.InvoiceService;
 import com.delta.rental.deltarental.services.abstracts.RentalService;
 import com.delta.rental.deltarental.services.dtos.requests.rental.AddRentalRequest;
 import com.delta.rental.deltarental.services.dtos.requests.rental.UpdateRentalRequest;
-import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
 import com.delta.rental.deltarental.services.dtos.responses.rental.GetRentalListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.rental.GetRentalResponse;
@@ -28,8 +25,6 @@ public class RentalManager implements RentalService {
     private final RentalRepository rentalRepository;
     private final ModelMapperService modelMapperService;
     private final CarService carService;
-    private final EmployeeService employeeService;
-    private final CustomerService customerService;
     private final RentalBusinessRules rentalBusinessRules;
 
     @Override
@@ -75,17 +70,16 @@ public class RentalManager implements RentalService {
 
         rental.setStartLocation(carId.getLocation());
         rental.setReturnLocation(null);
-        //this.carService.update(this.modelMapperService.forRequest().map(carId,UpdateCarRequest.class));
-        //UpdateCarRequest updateCarRequest = carId.setStatus(false);
-        //carService.update(carId.setStatus());
 
         //kiralamayı gün sayısına bağlı olarak hesaplanması ve toplam fiyata eklenmesi
         rental.setTotalPrice(carId.getDailyPrice() * rentalDays);
 
+
+
+
         rentalRepository.save(rental);
 
-        //*
-        //GetCarResponse carResponse = carService.getById(addRentalRequest.getCarId());
+
 
 
     }
@@ -114,6 +108,7 @@ public class RentalManager implements RentalService {
         //Arabanın kilometresini endKilometer ile güncelleyen kod.
         carService.updateCarKilometerWithEndKilometer(updateRentalRequest.getCarId(), rental.getEndKilometer());
 
+
         //Arabanın location'ını returnlocation ile güncelleyen kod.
         carService.updateCarLocationWithReturnLocation(updateRentalRequest.getCarId(), rental.getReturnLocation());
 
@@ -141,6 +136,14 @@ public class RentalManager implements RentalService {
         return showRental;
         //return rentalRepository.filterRentalByUsers(id);
     }
+
+/*    @Override
+    public void matchByRentalDateToInvoiceDate(int id, LocalDate date) {
+        Rental rental = rentalBusinessRules.checkByRentalId(id);
+        rental.setStartDate(date);
+        rentalRepository.save(rental);
+    }*/
+
 
     //   @Override
 /*    public void carReturn(int carId,UpdateRentalRequest updateRentalRequest,AddRentalRequest addRentalRequest) {

@@ -11,11 +11,13 @@ import com.delta.rental.deltarental.services.dtos.requests.invoice.UpdateInvoice
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
 import com.delta.rental.deltarental.services.dtos.responses.invoice.GetInvoiceListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.invoice.GetInvoiceResponse;
+import com.delta.rental.deltarental.services.dtos.responses.rental.GetRentalListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.rental.GetRentalResponse;
 import com.delta.rental.deltarental.services.rules.InvoiceBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,9 +26,9 @@ import java.util.stream.Collectors;
 @Service
 public class InvoiceManager implements InvoiceService {
     private final InvoiceRepository invoiceRepository;
-    private final RentalService rentalService;
     private final InvoiceBusinessRules invoiceBusinessRules;
     private final ModelMapperService modelMapperService;
+    private final RentalService rentalService;
     @Override
     public GetInvoiceResponse getById(int id) {
         Invoice invoice = invoiceBusinessRules.checkByInvoiceId(id);
@@ -52,11 +54,13 @@ public class InvoiceManager implements InvoiceService {
         Invoice invoice = this.modelMapperService.forRequest()
                 .map(addInvoiceRequest, Invoice.class);
 
-        GetRentalResponse rentalId = rentalService.getById(addInvoiceRequest.getRentalId());
+        GetRentalResponse getRentalResponse = rentalService.getById(addInvoiceRequest.getRentalId());
+        invoice.setDate(getRentalResponse.getStartDate());
+        invoice.setAmount(getRentalResponse.getTotalPrice());
+        invoice.setName(getRentalResponse.getCustomer().getUserName());
+        invoice.setAddress(getRentalResponse.getCustomer().getNationalityId());
 
-        //invoiceBusinessRules.checkByDateIsBeforeInvoiceDate(addInvoiceRequest.getDate());
-        invoiceBusinessRules.checkByRentalId(addInvoiceRequest.getRentalId());
-        invoiceBusinessRules.matchByRentalReturnDateToInvoiceDate(rentalId.getReturnDate());
+        //rentalService.matchByRentalDateToInvoiceDate(addInvoiceRequest.getRentalId(), invoice.getDate());
 
         invoiceRepository.save(invoice);
     }
@@ -69,8 +73,6 @@ public class InvoiceManager implements InvoiceService {
         Invoice invoice = this.modelMapperService.forRequest()
                 .map(updateInvoiceRequest, Invoice.class);
 
-        invoiceBusinessRules.checkByDateIsBeforeInvoiceDate(updateInvoiceRequest.getDate());
-        invoiceBusinessRules.checkByRentalId(updateInvoiceRequest.getRentalId());
 
 
         invoiceRepository.save(invoice);
@@ -81,4 +83,24 @@ public class InvoiceManager implements InvoiceService {
         invoiceRepository.deleteById(id);
 
     }
+
+    @Override
+    public List<GetInvoiceListResponse> getAllInvoiceDetails(int id) {
+        List<Invoice> invoices = invoiceRepository.findAllInvoiceDetails(id);
+        List<GetInvoiceListResponse> showInvoice = invoices.stream()
+                .map(invoice ->this.modelMapperService.forResponse()
+                        .map(invoice, GetInvoiceListResponse.class)).collect(Collectors.toList());
+        return showInvoice;
+    }
+
+    @Override
+    public List<GetInvoiceListResponse> getInvoiceDetails(String plate) {
+        List<Invoice> invoices = invoiceRepository.findInvoiceDetails(plate);
+        List<GetInvoiceListResponse> showInvoice = invoices.stream()
+                .map(invoice ->this.modelMapperService.forResponse()
+                        .map(invoice, GetInvoiceListResponse.class)).collect(Collectors.toList());
+        return showInvoice;
+    }
+
+
 }
