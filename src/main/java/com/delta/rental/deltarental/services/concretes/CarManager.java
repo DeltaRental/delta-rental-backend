@@ -108,6 +108,15 @@ public class CarManager implements CarService {
         return availableCars;
     }
 
+    @Override
+    public List<GetCarListResponse> getSearchPlate(String plate) {
+        List<Car> cars = carRepository.searchPlate(plate);
+        List<GetCarListResponse> getPlate = cars.stream()
+                .map(car ->this.modelMapperService.forResponse()
+                        .map(car, GetCarListResponse.class)).collect(Collectors.toList());
+        return getPlate;
+    }
+
 
 /*    @Override
     public List<GetCarListResponse> getAllByIsStatusTrue() {

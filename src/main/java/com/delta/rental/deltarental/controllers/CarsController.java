@@ -52,5 +52,10 @@ public class CarsController {
         return carService.filterCars(carFilterDto);
     }
 
+    @GetMapping("searchPlate")
+    public List<GetCarListResponse> searchPlate(@RequestParam String plate) {
+        return carService.getSearchPlate(plate);
+    }
+
 
 }

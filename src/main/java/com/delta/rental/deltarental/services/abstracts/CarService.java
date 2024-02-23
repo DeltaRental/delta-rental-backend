@@ -19,5 +19,6 @@ public interface CarService {
     void updateCarKilometerWithEndKilometer(int id,Double endKilometer);
     void updateCarLocationWithReturnLocation(int id,String returnLocation);
     List<GetCarListResponse> filterCars(CarFilterDto carFilterDto);
-    //List<GetCarListResponse> getAllByIsStatusTrue();
+
+    List<GetCarListResponse> getSearchPlate(String plate);
 }
