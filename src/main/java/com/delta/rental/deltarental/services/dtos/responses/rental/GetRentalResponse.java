@@ -3,6 +3,7 @@ package com.delta.rental.deltarental.services.dtos.responses.rental;
 import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.customer.GetCustomerListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.employee.GetEmployeeListResponse;
+import com.delta.rental.deltarental.services.dtos.responses.user.GetUserListResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,7 @@ public class GetRentalResponse {
 
     private GetCarListResponse car;
 
-    private GetCustomerListResponse customer;
+    private GetUserListResponse user;
 
     private GetEmployeeListResponse employee;
 }

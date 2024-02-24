@@ -37,13 +37,17 @@ public class User extends BaseEntity implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    private List<Customer> Customers;
+//    @OneToMany(mappedBy = "user")
+//    @JsonIgnore
+//    private List<Customer> Customers;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<Employee> Employees;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Rental> Rentals;
 
 //    SECURITY
     @Column(name="roles")

@@ -51,9 +51,13 @@ public class Rental extends BaseEntity {
     @JoinColumn(name = "car_id")
     private Car car;
 
+//    @ManyToOne
+//    @JoinColumn(name = "customer_id")
+//    private Customer customer;
+
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")

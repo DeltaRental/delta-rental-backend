@@ -54,7 +54,7 @@ public class RentalManager implements RentalService {
         rentalBusinessRules.checkByStartDateIsBeforeCurrentDate(addRentalRequest.getStartDate());
         rentalBusinessRules.checkByEndDateIsBeforeStartDate(addRentalRequest.getEndDate(),addRentalRequest.getStartDate());
         rentalBusinessRules.checkByCarId(addRentalRequest.getCarId());
-        rentalBusinessRules.checkByCustomerId(addRentalRequest.getCustomerId());
+        rentalBusinessRules.checkByUserId(addRentalRequest.getUserId());
         rentalBusinessRules.checkByEmployeeId(addRentalRequest.getEmployeeId());
         rentalBusinessRules.checkRentalDays(rentalDays);
 
@@ -91,7 +91,7 @@ public class RentalManager implements RentalService {
         rentalBusinessRules.checkByStartDateIsBeforeCurrentDate(updateRentalRequest.getStartDate());
         rentalBusinessRules.checkByEndDateIsBeforeStartDate(updateRentalRequest.getEndDate(),updateRentalRequest.getStartDate());
         rentalBusinessRules.checkByCarId(updateRentalRequest.getCarId());
-        rentalBusinessRules.checkByCustomerId(updateRentalRequest.getCustomerId());
+        rentalBusinessRules.checkByUserId(updateRentalRequest.getUserId());
         rentalBusinessRules.checkByEmployeeId(updateRentalRequest.getEmployeeId());
         rentalBusinessRules.checkRentalDays(rentalDays);
 

@@ -31,7 +31,7 @@ public class AddRentalRequest {
     private int carId;
 
     @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
-    private int customerId;
+    private int userId;
 
     @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int employeeId;

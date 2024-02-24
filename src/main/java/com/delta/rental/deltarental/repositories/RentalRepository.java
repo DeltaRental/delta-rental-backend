@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface RentalRepository extends JpaRepository<Rental,Integer> {
 
-    @Query(nativeQuery = true,value = "select r.* from rentals r inner join customers cus on r.customer_id = cus.id where cus.user_id=?1")
+    @Query(nativeQuery = true,value = "select r.* from rentals r inner join users u on r.user_id = u.id where u.id=?1")
     List<Rental> filterRentalByUsers(int id);
 }

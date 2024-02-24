@@ -5,6 +5,7 @@ import com.delta.rental.deltarental.repositories.RentalRepository;
 import com.delta.rental.deltarental.services.abstracts.CarService;
 import com.delta.rental.deltarental.services.abstracts.CustomerService;
 import com.delta.rental.deltarental.services.abstracts.EmployeeService;
+import com.delta.rental.deltarental.services.abstracts.UserService;
 import com.delta.rental.deltarental.services.constants.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ public class RentalBusinessRules {
     private final CarService carService;
     private final CustomerService customerService;
     private final EmployeeService employeeService;
+    private final UserService userService;
 
     //DB içerisinde rental id' ye göre rental olup olmama durumu kontrolü
     public Rental checkByRentalId(int id){
@@ -48,8 +50,8 @@ public class RentalBusinessRules {
 
     //Customer id' nin db' de var olup olamama durumu kontrolü.
     //Customer da bir user olduğundan dolayı Customer id sine sahip bir veri bulamadığında user da yok demektir
-    public void checkByCustomerId(int id){
-        customerService.getById(id);
+    public void checkByUserId(int id){
+        userService.getById(id);
     }
 
     //Employee id' nin db' de var olup olamama durumu kontrolü.
