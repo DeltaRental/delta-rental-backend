@@ -13,7 +13,6 @@ import java.time.LocalDate;
 public class GetInvoiceResponse {
     private LocalDate date;
     private double amount;
-    private String address;
     private String name;
     private int rentalId;
 }

@@ -35,6 +35,7 @@ public class SecurityConfiguration {
                                 "/api/brands/**",
                                 "/api/invoices/**",
                                 "/api/models/**",
+                                "/api/imagedata/**",
                                 "/api/colors/**",
                                 "/api/users/**",
                                 "/api/customers/**",

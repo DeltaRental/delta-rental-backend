@@ -58,9 +58,6 @@ public class InvoiceManager implements InvoiceService {
         invoice.setDate(getRentalResponse.getStartDate());
         invoice.setAmount(getRentalResponse.getTotalPrice());
         invoice.setName(getRentalResponse.getUser().getName());
-//        invoice.setAddress(getRentalResponse.getCustomer().getNationalityId());
-
-        //rentalService.matchByRentalDateToInvoiceDate(addInvoiceRequest.getRentalId(), invoice.getDate());
 
         invoiceRepository.save(invoice);
     }

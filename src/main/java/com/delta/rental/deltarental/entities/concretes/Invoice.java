@@ -21,8 +21,6 @@ public class Invoice extends BaseEntity {
     @Column(name = "amount")
     private double amount;
 
-    @Column(name = "address")
-    private String address;
 
     @Column(name = "name")
     private String name;
