@@ -20,7 +20,7 @@ public class UpdateCustomerRequest {
 
     @NotNull(message = Messages.CustomerMessages.CUSTOMER_NATIONALITY_ID_NOT_NULL)
     @Size(min=11, max=11, message = Messages.CustomerMessages.CUSTOMER_NATIONALITY_ID_LENGTH_ELEVEN_DIGITS)
-    @Pattern(regexp = "^[0-9]+$", message = Messages.CustomerMessages.CUSTOMER_NATIONALITY_ID_ONLY_NUMBERS)
+    @Pattern(regexp = Messages.CustomerMessages.CUSTOMER_NATIONALITY_ID_ONLY_NUMBERS_REGEX, message = Messages.CustomerMessages.CUSTOMER_NATIONALITY_ID_ONLY_NUMBERS)
     private String nationalityId;
 
     @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)

@@ -72,6 +72,5 @@ public class BranchManager implements BranchService {
         branchBusinessRules.checkByBranchId(id);
         branchRepository.deleteById(id);
 
-
     }
 }

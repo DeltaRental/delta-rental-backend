@@ -14,7 +14,6 @@ import java.util.Optional;
 public class BranchBusinessRules {
     private final BranchRepository branchRepository;
 
-
     //DB içerisinde aynı Branch id' ye sahip şube olup olmama durumu kontrolü
     public Branch checkByBranchId(int id){
         if(!(branchRepository.existsById(id))){
@@ -35,7 +34,6 @@ public class BranchBusinessRules {
         Optional<Branch> existingBranchOptional = branchRepository.findById(id);
         Branch existingBranch = existingBranchOptional.get();
         String newName = name.trim().toUpperCase().replaceAll(Messages.GeneralMessages.REPLACE_ALL_REGEX, Messages.GeneralMessages.REPLACE_ALL_REPLACEMENT);
-
 
         //Eğer DB de girilen şubeye sahip başka bir şube ismi var ise bu hata oluşur.Ancak yok ise güncellenir(kendi şube ismi dahil).
         if (!existingBranch.getName().equals(newName) && branchRepository.existsByName(newName)) {

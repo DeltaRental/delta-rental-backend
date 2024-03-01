@@ -74,13 +74,7 @@ public class RentalManager implements RentalService {
         //kiralamayı gün sayısına bağlı olarak hesaplanması ve toplam fiyata eklenmesi
         rental.setTotalPrice(carId.getDailyPrice() * rentalDays);
 
-
-
-
         rentalRepository.save(rental);
-
-
-
 
     }
 
@@ -134,29 +128,9 @@ public class RentalManager implements RentalService {
                 .map(rental ->this.modelMapperService.forResponse()
                         .map(rental, GetRentalListResponse.class)).collect(Collectors.toList());
         return showRental;
-        //return rentalRepository.filterRentalByUsers(id);
     }
 
-/*    @Override
-    public void matchByRentalDateToInvoiceDate(int id, LocalDate date) {
-        Rental rental = rentalBusinessRules.checkByRentalId(id);
-        rental.setStartDate(date);
-        rentalRepository.save(rental);
-    }*/
 
-
-    //   @Override
-/*    public void carReturn(int carId,UpdateRentalRequest updateRentalRequest,AddRentalRequest addRentalRequest) {
-        GetCarResponse carResponse = carService.getById(carId);
-        if(updateRentalRequest.getReturnDate().isBefore(LocalDate.now())){
-            carResponse.setStatus(false);
-        }else {
-            carResponse.setStatus(true);
-        }
-
-        this.carService.update(this.modelMapperService.forRequest().map(carResponse,UpdateCarRequest.class));
-
-    }*/
 
 
 }

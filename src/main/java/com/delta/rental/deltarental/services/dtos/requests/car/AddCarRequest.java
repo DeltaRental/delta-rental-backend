@@ -25,8 +25,7 @@ public class AddCarRequest {
     @Positive(message = Messages.CarMessages.DAILY_PRICE_NOT_NEGATIVE)
     private double dailyPrice;
 
-    //@Pattern(regexp = "(?i)^[0-9]{2}[A-Z]{1,3}[0-9]{1,4}$", message = "Boşluksuz ve geçerli bir plaka giriniz.")
-    @Pattern(regexp = "(?i)^\\s*[0-9]{2}\\s*[A-Z]{1,3}\\s*[0-9]{1,4}\\s*$", message = Messages.CarMessages.ENTER_VALID_PLATE)
+    @Pattern(regexp = Messages.CarMessages.ENTER_VALID_PLATE_REGEX, message = Messages.CarMessages.ENTER_VALID_PLATE)
     private String plate;
 
     @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)

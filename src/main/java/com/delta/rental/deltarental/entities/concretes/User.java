@@ -37,10 +37,6 @@ public class User extends BaseEntity implements UserDetails {
     @Column(name = "password")
     private String password;
 
-//    @OneToMany(mappedBy = "user")
-//    @JsonIgnore
-//    private List<Customer> Customers;
-
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<Employee> Employees;
@@ -53,11 +49,6 @@ public class User extends BaseEntity implements UserDetails {
     @Column(name="roles")
     @Enumerated(EnumType.STRING)
     private List<UserRole> authorities;
-
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return List.of(new SimpleGrantedAuthority(role.name()));
-//    }
 
     @Override
     public String getPassword() {

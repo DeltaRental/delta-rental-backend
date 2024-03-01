@@ -6,6 +6,7 @@ public class Messages {
         public static final String WRONG_INFORMATION = "Bilgiler hatalı!";
         public static final String REPLACE_ALL_REGEX = "\\s";
         public static final String REPLACE_ALL_REPLACEMENT = "";
+        public static final String GSM_REGEX = "^[0-9]{10}$";
     }
 
     public class IdMessages{
@@ -26,6 +27,8 @@ public class Messages {
         public static final String POSTAL_CODE_LENGTH_FIVE_DIGITS = "Posta kodu 5 basamaklı olmalıdır!";
         public static final String BRANCH_NOT_FOUND = " nolu id'ye sahip Şube bulunmamaktadır.";
         public static final String SAME_BRANCH_NAME_EXISTS = "Bu Şube adı zaten var!!";
+        public static final String TURKISH_LETTER_REGEX = "^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$";
+
     }
 
     public class BrandMessages{
@@ -45,6 +48,7 @@ public class Messages {
         public static final String ENTER_VALID_PLATE = "geçerli bir plaka giriniz.";
         public static final String SAME_PLATE_CAR_EXISTS = "Aynı plakada başka bir araç eklenemez.";
         public static final String CAR_NOT_FOUND = " nolu id'ye sahip araç bulunmamaktadır.";
+        public static final String ENTER_VALID_PLATE_REGEX = "(?i)^\\s*[0-9]{2}\\s*[A-Z]{1,3}\\s*[0-9]{1,4}\\s*$";
 
     }
 
@@ -63,6 +67,7 @@ public class Messages {
         public static final String CUSTOMER_NATIONALITY_ID_NOT_NULL = "Kimlik numarası boş geçilemez";
         public static final String CUSTOMER_NATIONALITY_ID_LENGTH_ELEVEN_DIGITS = "Kimlik numarası 11 haneli olmak zorundadır.";
         public static final String CUSTOMER_NATIONALITY_ID_ONLY_NUMBERS = "Kimlik numarası sadece rakamlardan oluşmalıdır.";
+        public static final String CUSTOMER_NATIONALITY_ID_ONLY_NUMBERS_REGEX = "^[0-9]+$";
     }
 
     public class EmployeeMessages{
@@ -95,6 +100,7 @@ public class Messages {
         public static final String PHONE_NUMBER_NOT_START_ZERO = "Telefon numarasını başında sıfır olmadan giriniz!.";
         public static final String ENTER_VALID_EMAIL = "Geçerli bir e-posta adresi giriniz .";
         public static final String USER_NOT_FOUND = " nolu id'ye sahip user bulunmamaktadır.";
+        public static final String USER_ONLY_LETTERS_REGEX = "^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$";
     }
     public class ImageMessages{
         public static final String BASE_PUBLIC_ID = "image/upload/";

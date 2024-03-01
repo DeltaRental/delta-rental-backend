@@ -14,14 +14,14 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 public class AddBranchRequest {
     @NotNull(message = Messages.BranchMessages.BRANCH_NAME_NOT_NULL)
-    @Pattern(regexp = "^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$", message = Messages.BranchMessages.BRANC_NAME_ONLY_LETTERS)
+    @Pattern(regexp = Messages.BranchMessages.TURKISH_LETTER_REGEX, message = Messages.BranchMessages.BRANC_NAME_ONLY_LETTERS)
     private String name;
 
     @NotBlank(message = Messages.BranchMessages.ADDRESS_NOT_BLANK)
     @Length(max=255,message = Messages.BranchMessages.MAX_LENGTH)
     private String address;
 
-    @Pattern(regexp = "^[0-9]{10}$", message = Messages.BranchMessages.PHONE_NUMBER_NOT_BEGIN_ZERO)
+    @Pattern(regexp = Messages.GeneralMessages.GSM_REGEX, message = Messages.BranchMessages.PHONE_NUMBER_NOT_BEGIN_ZERO)
     private String gsm;
 
     @Email(message = Messages.BranchMessages.ENTER_VALID_EMAIL)

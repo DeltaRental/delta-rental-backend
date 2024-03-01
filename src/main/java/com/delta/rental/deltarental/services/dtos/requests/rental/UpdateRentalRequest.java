@@ -17,18 +17,13 @@ public class UpdateRentalRequest {
     @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int id;
 
-
     private LocalDate startDate;
 
-
     private LocalDate endDate;
-
 
     private LocalDate returnDate;
 
     private String returnLocation;
-
-    //private double startKilometer;
 
     private double endKilometer;
 

@@ -20,13 +20,7 @@ public interface RentalService {
     void add (AddRentalRequest addRentalRequest);
     void update(UpdateRentalRequest updateRentalRequest);
     void delete(int id);
-
-    //void carReturn(int carId, UpdateRentalRequest updateRentalRequest,AddRentalRequest addRentalRequest);
-
-
     List<GetRentalListResponse> filterRentalByUsers(int id);
-
-    //void matchByRentalDateToInvoiceDate(int id, LocalDate date);
 
 
 }

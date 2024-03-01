@@ -48,7 +48,6 @@ public class AuthManager implements AuthService {
                         request.getPassword()
                 )
         );
-        //var user = userService.getByEmail(request.getEmail());
         var jwtToken = jwtService.generateToken(userEntity);
         return GetAuthenticationResponse.builder().token(jwtToken).build();
     }

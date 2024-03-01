@@ -17,16 +17,6 @@ public class AddRentalRequest {
 
     private LocalDate endDate;
 
-    //private String startLocation;
-
-    //private LocalDate returnDate;
-
-    //private double startKilometer;
-
-    //private Double endKilometer;
-
-    //private double discount;
-
     @Positive(message = Messages.IdMessages.ID_NOT_NEGATIVE)
     private int carId;
 
