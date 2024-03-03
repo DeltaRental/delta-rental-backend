@@ -3,12 +3,9 @@ package com.delta.rental.deltarental.services.rules;
 
 import com.delta.rental.deltarental.entities.concretes.Invoice;
 import com.delta.rental.deltarental.repositories.InvoiceRepository;
-import com.delta.rental.deltarental.services.abstracts.RentalService;
 import com.delta.rental.deltarental.services.constants.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Service
 @AllArgsConstructor
@@ -21,6 +18,13 @@ public class InvoiceBusinessRules {
             throw new RuntimeException(id + Messages.InvoiceMessages.INVOICE_NOT_FOUND);
         }
         return invoiceRepository.findById(id).orElseThrow();
+    }
+
+    public void checkByRentalId(int rentalId){
+        // RentalId'ye sahip fatura var mı kontrol et
+        if (invoiceRepository.existsByRentalId(rentalId)) {
+            throw new IllegalStateException(Messages.InvoiceMessages.INVOICE_IN_ALREADY_RENTALID);
+        }
     }
 
 

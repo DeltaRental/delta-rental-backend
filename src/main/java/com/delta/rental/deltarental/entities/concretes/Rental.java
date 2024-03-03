@@ -1,9 +1,6 @@
 package com.delta.rental.deltarental.entities.concretes;
 
 import com.delta.rental.deltarental.entities.abstracts.BaseEntity;
-import com.delta.rental.deltarental.entities.concretes.Car;
-import com.delta.rental.deltarental.entities.concretes.Customer;
-import com.delta.rental.deltarental.entities.concretes.Employee;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

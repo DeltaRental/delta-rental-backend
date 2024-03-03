@@ -3,7 +3,6 @@ package com.delta.rental.deltarental.services.dtos.responses.car;
 import com.delta.rental.deltarental.enums.CarState;
 import com.delta.rental.deltarental.enums.FuelType;
 import com.delta.rental.deltarental.enums.GearType;
-import com.delta.rental.deltarental.services.dtos.responses.branch.GetBranchListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.branch.GetBranchResponse;
 import com.delta.rental.deltarental.services.dtos.responses.color.GetColorResponse;
 import com.delta.rental.deltarental.services.dtos.responses.model.GetModelResponse;

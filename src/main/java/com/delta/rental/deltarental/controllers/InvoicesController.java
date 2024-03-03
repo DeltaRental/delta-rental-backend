@@ -1,7 +1,6 @@
 package com.delta.rental.deltarental.controllers;
 
 
-import com.delta.rental.deltarental.repositories.InvoiceRepository;
 import com.delta.rental.deltarental.services.abstracts.InvoiceService;
 import com.delta.rental.deltarental.services.dtos.requests.invoice.AddInvoiceRequest;
 import com.delta.rental.deltarental.services.dtos.requests.invoice.UpdateInvoiceRequest;

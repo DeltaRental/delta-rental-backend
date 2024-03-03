@@ -1,10 +1,8 @@
 package com.delta.rental.deltarental.repositories;
 
 import com.delta.rental.deltarental.entities.concretes.Car;
-import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;

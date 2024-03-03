@@ -5,7 +5,6 @@ import com.delta.rental.deltarental.services.dtos.requests.customer.AddCustomerR
 import com.delta.rental.deltarental.services.dtos.requests.customer.UpdateCustomerRequest;
 import com.delta.rental.deltarental.services.dtos.responses.customer.GetCustomerListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.customer.GetCustomerResponse;
-import com.delta.rental.deltarental.services.dtos.responses.model.GetModelResponse;
 
 import java.util.List;
 

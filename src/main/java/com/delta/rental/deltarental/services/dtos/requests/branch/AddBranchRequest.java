@@ -3,7 +3,10 @@ package com.delta.rental.deltarental.services.dtos.requests.branch;
 
 import com.delta.rental.deltarental.enums.City;
 import com.delta.rental.deltarental.services.constants.Messages;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

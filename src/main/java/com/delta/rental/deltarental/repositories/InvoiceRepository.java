@@ -9,6 +9,8 @@ public interface InvoiceRepository extends JpaRepository<Invoice,Integer> {
 
     boolean existsById(int id);
 
+    boolean existsByRentalId(int rentalId);
+
 
     @Query(nativeQuery = true,value = "select i.* from invoices i inner join rentals r on i.rental_id = r.id inner join users u on u.id = r.user_id where u.id = ?1")
     List<Invoice> findAllInvoiceDetails(int id);

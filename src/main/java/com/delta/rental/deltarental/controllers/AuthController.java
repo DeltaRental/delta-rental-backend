@@ -3,7 +3,6 @@ package com.delta.rental.deltarental.controllers;
 import com.delta.rental.deltarental.services.abstracts.AuthService;
 import com.delta.rental.deltarental.services.dtos.requests.authentication.AddAuthenticationRequest;
 import com.delta.rental.deltarental.services.dtos.requests.user.AddUserRequest;
-import com.delta.rental.deltarental.services.dtos.requests.user.UpdateUserRequest;
 import com.delta.rental.deltarental.services.dtos.responses.authentication.GetAuthenticationResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

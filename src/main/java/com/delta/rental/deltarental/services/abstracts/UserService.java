@@ -4,7 +4,6 @@ import com.delta.rental.deltarental.entities.concretes.User;
 import com.delta.rental.deltarental.services.dtos.requests.user.UpdateUserRequest;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserResponse;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 

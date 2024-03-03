@@ -1,11 +1,9 @@
 package com.delta.rental.deltarental.services.dtos.responses.branch;
 
 import com.delta.rental.deltarental.enums.City;
-import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 
 
 @Data

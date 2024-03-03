@@ -2,7 +2,6 @@ package com.delta.rental.deltarental.services.concretes;
 
 import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.concretes.Car;
-import com.delta.rental.deltarental.entities.concretes.Rental;
 import com.delta.rental.deltarental.repositories.CarRepository;
 import com.delta.rental.deltarental.services.abstracts.BranchService;
 import com.delta.rental.deltarental.services.abstracts.CarService;
@@ -16,9 +15,7 @@ import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
 import com.delta.rental.deltarental.services.rules.CarBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 

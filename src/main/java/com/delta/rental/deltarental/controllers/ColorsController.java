@@ -1,15 +1,10 @@
 package com.delta.rental.deltarental.controllers;
 
 import com.delta.rental.deltarental.services.abstracts.ColorService;
-import com.delta.rental.deltarental.services.abstracts.ModelService;
-import com.delta.rental.deltarental.services.dtos.requests.car.AddCarRequest;
-import com.delta.rental.deltarental.services.dtos.requests.car.UpdateCarRequest;
 import com.delta.rental.deltarental.services.dtos.requests.color.AddColorRequest;
 import com.delta.rental.deltarental.services.dtos.requests.color.UpdateColorRequest;
-import com.delta.rental.deltarental.services.dtos.responses.car.GetCarListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.color.GetColorListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.color.GetColorResponse;
-import com.delta.rental.deltarental.services.dtos.responses.model.GetModelResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

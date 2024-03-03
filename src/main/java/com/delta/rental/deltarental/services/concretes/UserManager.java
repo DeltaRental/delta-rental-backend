@@ -4,15 +4,14 @@ import com.delta.rental.deltarental.core.utilities.mappers.ModelMapperService;
 import com.delta.rental.deltarental.entities.concretes.User;
 import com.delta.rental.deltarental.repositories.UserRepository;
 import com.delta.rental.deltarental.services.abstracts.UserService;
+import com.delta.rental.deltarental.services.constants.Messages;
 import com.delta.rental.deltarental.services.dtos.requests.user.UpdateUserRequest;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.user.GetUserResponse;
 import com.delta.rental.deltarental.services.rules.UserBusinessRules;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.delta.rental.deltarental.services.constants.Messages;
 
 import java.util.List;
 import java.util.stream.Collectors;

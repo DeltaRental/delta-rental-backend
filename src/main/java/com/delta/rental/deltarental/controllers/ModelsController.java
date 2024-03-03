@@ -1,12 +1,8 @@
 package com.delta.rental.deltarental.controllers;
 
 import com.delta.rental.deltarental.services.abstracts.ModelService;
-import com.delta.rental.deltarental.services.dtos.requests.color.AddColorRequest;
-import com.delta.rental.deltarental.services.dtos.requests.color.UpdateColorRequest;
 import com.delta.rental.deltarental.services.dtos.requests.model.AddModelRequest;
 import com.delta.rental.deltarental.services.dtos.requests.model.UpdateModelRequest;
-import com.delta.rental.deltarental.services.dtos.responses.car.GetCarResponse;
-import com.delta.rental.deltarental.services.dtos.responses.color.GetColorListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.model.GetModelListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.model.GetModelResponse;
 import jakarta.validation.Valid;

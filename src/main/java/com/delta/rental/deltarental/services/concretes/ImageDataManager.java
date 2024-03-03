@@ -16,8 +16,6 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.delta.rental.deltarental.services.constants.Messages.ImageMessages.BASE_PUBLIC_ID;
-
 @Service
 @AllArgsConstructor
 public class ImageDataManager implements ImageService {

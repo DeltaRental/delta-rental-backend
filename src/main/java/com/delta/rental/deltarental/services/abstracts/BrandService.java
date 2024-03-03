@@ -2,7 +2,6 @@ package com.delta.rental.deltarental.services.abstracts;
 
 import com.delta.rental.deltarental.services.dtos.requests.brand.AddBrandRequest;
 import com.delta.rental.deltarental.services.dtos.requests.brand.UpdateBrandRequest;
-import com.delta.rental.deltarental.services.dtos.requests.color.UpdateColorRequest;
 import com.delta.rental.deltarental.services.dtos.responses.brand.GetBrandListResponse;
 import com.delta.rental.deltarental.services.dtos.responses.brand.GetBrandResponse;
 

@@ -1,8 +1,6 @@
 package com.delta.rental.deltarental.entities.concretes;
 
 import com.delta.rental.deltarental.entities.abstracts.BaseEntity;
-import com.delta.rental.deltarental.entities.concretes.Customer;
-import com.delta.rental.deltarental.entities.concretes.Employee;
 import com.delta.rental.deltarental.enums.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
