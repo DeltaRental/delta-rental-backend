@@ -6,6 +6,7 @@
 <p align="center">
   <img src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1709388157/pcyuu3lgcvm96ks2p5c0.png" alt="Logo" width="300" height="300">
 </p>
+
 ************************************************************
 
 # Araba Kiralama Projesi
@@ -46,10 +47,13 @@ Backend tarafında kullanılan teknolojiler şunlardır:
 * **PostgreSQL**: Açık kaynaklı, ilişkisel ve nesne-ilişkisel bir veritabanı yönetim sistemidir.
 * **Cloudinary**: Bulut tabanlı, resim ve video işleme ve barındırma platformudur.
 *  **Stripe**: Çevrimiçi ödeme işleme ve kredi kartı işleme platformudur.
+
 [![Teknolojiler](https://skillicons.dev/icons?i=postman,git,java,spring,postgresql,)](https://skillicons.dev)
 
+
 ## DataBase ER Diagramı
-![DIAGRAM](img/projeERD_1.png)
+
+![DIAGRAM](https://github.com/DeltaRental/delta-rental-backend/assets/102322010/71deea58-967b-4213-95e3-a624f36c5323)
 
 ## Kurulum
 
